@@ -1,3 +1,7 @@
-<div ng-show="$ctrl.auth.loggedIn">
-  <ww-welcome></ww-welcome>
+<div ng-show="!main.auth.loggedIn">
+  Logging in ...
 </div>
+<div ng-show="main.auth.loggedIn">
+  Welcome {{main.auth.user.name}}
+</div>
+<a ng-click="main.logoutOfGoogle()" href="">Log out</a>

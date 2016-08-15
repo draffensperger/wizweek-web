@@ -6,34 +6,9 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController(auth) {
     var vm = this;
-
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1471013213605;
-    vm.loginWithGoogle = loginWithGoogle;
-
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
-    }
-
-    function loginWithGoogle() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
+    vm.auth = auth;
+    vm.logoutOfGoogle = auth.logout;
   }
 })();
