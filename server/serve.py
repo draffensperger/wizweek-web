@@ -11,7 +11,6 @@ from IPython import embed
 
 app = flask.Flask(__name__)
 
-
 @app.route('/')
 def index():
     if 'credentials' not in flask.session:

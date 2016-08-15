@@ -12,7 +12,7 @@
     vm.awesomeThings = [];
     vm.classAnimation = '';
     vm.creationDate = 1471013213605;
-    vm.showToastr = showToastr;
+    vm.loginWithGoogle = loginWithGoogle;
 
     activate();
 
@@ -23,7 +23,7 @@
       }, 4000);
     }
 
-    function showToastr() {
+    function loginWithGoogle() {
       toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
       vm.classAnimation = '';
     }

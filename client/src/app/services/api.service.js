@@ -3,10 +3,12 @@
 
   angular
   .module('wizweekPy')
-  .run(runBlock);
+  .service('api', api);
 
   /** @ngInject */
-  function runBlock(auth) {
-    auth.checkAuth();
+  function api() {
+    var service = {
+    }
+    return service;
   }
 })();
