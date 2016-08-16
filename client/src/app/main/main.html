@@ -1,7 +1,7 @@
-<div ng-show="!main.auth.signedIn">
+<div ng-show="!main.auth.signedIn && main.auth.signingIn">
   Logging in ...
 </div>
 <div ng-show="main.auth.signedIn">
   Welcome {{main.auth.userName}} ({{main.auth.userEmail}})
+  <a ng-click="main.auth.signOut()" href="">Log out</a>
 </div>
-<a ng-click="main.auth.signOut()" href="">Log out</a>

@@ -6,7 +6,7 @@
   .service('auth', auth);
 
   /** @ngInject */
-  function auth(GAuth, gapiScopes, gapiClientId, $state) {
+  function auth(GAuth, gapiScopes, gapiClientId, $state, $rootScope) {
     GAuth.setConfig({
       clientId: gapiClientId,
       scope: gapiScopes,
@@ -36,6 +36,7 @@
         service.userName = null;
         $state.go('login');
       }
+      $rootScope.$digest();
     }
 
     function checkAuth() {

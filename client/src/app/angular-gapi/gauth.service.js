@@ -53,17 +53,11 @@
       } else {
         return get().then(function(auth2) {
           auth2.init({ client_id: config.clientId, scope: config.scope });
-          setupListeners(auth2);
+          auth2.getAuthInstance().currentUser.listen(config.currentUserListener);
           initialized = true;
           return auth2;
         });
       }
-    }
-
-    function setupListeners(auth2) {
-      var authInstance = auth2.getAuthInstance();
-      authInstance.currentUser.listen(config.currentUserListener);
-      config.currentUserListener(authInstance.currentUser.get());
     }
 
     function get() {
