@@ -1,5 +1,15 @@
-<div ng-show="!main.auth.signedIn && main.auth.signingIn">
-  Logging in ...
+<div ng-show="!main.auth.signedIn">
+  <div ng-show="main.auth.signingIn">
+    Please complete the Google login in the next tab.
+  </div>
+  <div ng-show="!main.auth.signingIn">
+    <div ng-show="main.auth.signedInRecently">
+      Checking your sign in ...
+    </div>
+    <div ng-show="!main.auth.signedInRecently">
+      You shouldn't be seeing this!
+    </div>
+  </div>
 </div>
 <div ng-show="main.auth.signedIn">
   Welcome {{main.auth.userName}} ({{main.auth.userEmail}})
