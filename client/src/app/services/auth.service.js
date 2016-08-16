@@ -15,6 +15,7 @@
       login: login,
       logout: logout,
       loggedIn: false,
+      loggingIn: false,
       user: null
     }
     return service;
@@ -24,6 +25,7 @@
     }
 
     function login() {
+      service.loggingIn = true;
       GAuth.login().then(loggedIn, notLoggedIn);
     }
 
@@ -32,6 +34,7 @@
     }
 
     function loggedIn(user) {
+      service.loggingIn = false;
       service.loggedIn = true;
       service.user = user;
       $state.go('home');
@@ -39,6 +42,7 @@
     }
 
     function notLoggedIn() {
+      service.loggingIn = false;
       service.loggedIn = false;
       service.user = null;
       $state.go('login');
