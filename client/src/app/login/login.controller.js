@@ -9,15 +9,5 @@
   function LoginController(auth) {
     var vm = this;
     vm.auth = auth;
-    vm.loginWithGoogle = loginWithGoogle;
-
-    activate();
-
-    function activate() {
-    }
-
-    function loginWithGoogle() {
-      auth.login();
-    }
   }
 })();

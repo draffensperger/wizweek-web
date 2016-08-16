@@ -6,7 +6,8 @@
   .run(runBlock);
 
   /** @ngInject */
-  function runBlock(auth) {
+  function runBlock(auth, routeChecker) {
+    routeChecker.setup();
     auth.checkAuth();
   }
 })();
