@@ -32,7 +32,7 @@
     }
 
     function loadScript() {
-      var URL = 'https://apis.google.com/js/client.js?onload=_gapiOnLoad';
+      var URL = 'https://apis.google.com/js/api.js?onload=_gapiOnLoad';
 
       var deferred = $q.defer();
       $window._gapiOnLoad = function(){

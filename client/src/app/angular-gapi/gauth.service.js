@@ -30,13 +30,12 @@
     function checkAuth() {
       var deferred = $q.defer();
       init().then(function (auth2) {
-        auth2.getAuthInstance().isSignedIn.listen(function(isSignedIn) {
-          if (isSignedIn) {
-            deferred.resolve(auth2.currentUser);
-          } else {
-            deferred.reject();
-          }
-        });
+        var authInstance = auth2.getAuthInstance();
+        if (authInstance.isSignedIn.get()) {
+          deferred.resolve(authInstance.currentUser.get());
+        } else {
+          deferred.reject();
+        }
       });
       return deferred.promise;
     }
