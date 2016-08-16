@@ -27,6 +27,18 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   }
 }
 
+.dashboard {
+  padding-top: 2em;
+}
+
+.main-content {
+  padding-top: 3.5em;
+}
+
+.jumbotron {
+  padding-top: 1em;
+}
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
