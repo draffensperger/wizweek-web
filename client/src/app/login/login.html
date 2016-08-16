@@ -1,7 +1,7 @@
-<div ng-show="login.auth.loggingIn">
+<div ng-show="login.auth.signingIn">
   Logging in ...
 </div>
-<div ng-show="!login.auth.loggingIn">
+<div ng-show="!login.auth.signingIn">
   <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
       <div class="navbar-header">
@@ -15,7 +15,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <form class="navbar-text navbar-form navbar-right">
-          <a ng-click="login.loginWithGoogle()" href="">Sign in with Google</a>
+          <a ng-click="login.auth.signIn()" href="">Sign in with Google</a>
         </form>
       </div><!--/.navbar-collapse -->
     </div>
@@ -33,7 +33,7 @@
 
       <p>
       <a class="btn btn-primary btn-lg" role="button"
-        ng-click="login.loginWithGoogle()">Sign in with Google to get started &raquo;</a></p>
+        ng-click="login.auth.signIn()">Sign in with Google to get started &raquo;</a></p>
     </div>
   </div>
 

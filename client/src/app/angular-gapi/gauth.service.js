@@ -23,7 +23,6 @@
     // {
     //   clientId: 'xyz.apps.googleusercontent.com',
     //   scope: 'https://www.googleapis.com/auth/calendar',
-    //   signedInListener: function(signedIn) { ... },
     //   currentUserListener: function(currentUser) { ... }
     // }
     function setConfig(conf) {
@@ -63,11 +62,7 @@
 
     function setupListeners(auth2) {
       var authInstance = auth2.getAuthInstance();
-      authInstance.isSignedIn.listen(config.signedInListener);
       authInstance.currentUser.listen(config.currentUserListener);
-
-      // Send the listeners the inital value after the init
-      config.signedInListener(authInstance.isSignedIn.get());
       config.currentUserListener(authInstance.currentUser.get());
     }
 

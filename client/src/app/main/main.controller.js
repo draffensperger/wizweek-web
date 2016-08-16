@@ -9,6 +9,5 @@
   function MainController(auth) {
     var vm = this;
     vm.auth = auth;
-    vm.logoutOfGoogle = auth.logout;
   }
 })();
