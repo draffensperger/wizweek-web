@@ -31,12 +31,10 @@
         service.userEmail = user.getBasicProfile().getEmail();
         service.userName = user.getBasicProfile().getName();
         lastSignIn.signedIn(user.getAuthResponse().expires_at);
-        $state.go('home');
       } else {
         service.userEmail = null;
         service.userName = null;
         lastSignIn.signedOut();
-        $state.go('login');
       }
       $rootScope.$digest();
     }

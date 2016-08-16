@@ -14,13 +14,6 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login',
-        publicAccess: true
-      });
 
     $urlRouterProvider.otherwise('/');
   }

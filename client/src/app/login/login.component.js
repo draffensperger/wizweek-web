@@ -3,7 +3,11 @@
 
   angular
   .module('wizweekPy')
-  .controller('LoginController', LoginController);
+  .component('wwLogin', {
+    controller: LoginController,
+    controllerAs: 'login',
+    templateUrl: '/app/login/login.html'
+  });
 
   /** @ngInject */
   function LoginController(auth) {

@@ -6,8 +6,9 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(auth) {
+  function MainController(auth, lastSignIn) {
     var vm = this;
     vm.auth = auth;
+    vm.lastSignIn = lastSignIn;
   }
 })();

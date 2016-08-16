@@ -1,17 +1,6 @@
-<div ng-show="!main.auth.signedIn">
-  <div ng-show="main.auth.signingIn">
-    Please complete the Google login in the next tab.
-  </div>
-  <div ng-show="!main.auth.signingIn">
-    <div ng-show="main.auth.signedInRecently">
-      Checking your sign in ...
-    </div>
-    <div ng-show="!main.auth.signedInRecently">
-      You shouldn't be seeing this!
-    </div>
-  </div>
+<ww-login ng-show="!main.auth.isSignedIn"></ww-login>
+<div ng-show="main.auth.isSigningIn">
+  <span us-spinner="{radius:30, width:8, length: 16}"></span>
 </div>
-<div ng-show="main.auth.signedIn">
-  Welcome {{main.auth.userName}} ({{main.auth.userEmail}})
-  <a ng-click="main.auth.signOut()" href="">Log out</a>
-</div>
+<ww-dashboard ng-show="main.auth.isSignedIn || main.lastSignIn.isLikelyActive()"></ww-dashboard>
+
