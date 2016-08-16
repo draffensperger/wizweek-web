@@ -26,7 +26,7 @@
 
     function login() {
       service.loggingIn = true;
-      GAuth.login().then(loggedIn, notLoggedIn);
+      GAuth.signIn().then(loggedIn, notLoggedIn);
     }
 
     function logout() {

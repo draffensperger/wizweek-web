@@ -15,7 +15,8 @@
     var service = {
       checkAuth: checkAuth,
       setClient: setClient,
-      setScope: setScope
+      setScope: setScope,
+      signIn: signIn
     };
     return service;
 
@@ -29,15 +30,29 @@
 
     function checkAuth() {
       var deferred = $q.defer();
-      init().then(function (auth2) {
-        var authInstance = auth2.getAuthInstance();
-        if (authInstance.isSignedIn.get()) {
-          deferred.resolve(authInstance.currentUser.get());
-        } else {
-          deferred.reject();
-        }
+      init().then(function(auth2) {
+        resolveLoginPromise(deferred, auth2);
       });
       return deferred.promise;
+    }
+
+    function signIn() {
+      var deferred = $q.defer();
+      init().then(function(auth2) {
+        auth2.getAuthInstance().signIn().then(function() {
+          resolveLoginPromise(deferred, auth2);
+        });
+      });
+      return deferred.promise;
+    }
+
+    function resolveLoginPromise(deferred, auth2) {
+      var authInstance = auth2.getAuthInstance();
+      if (authInstance.isSignedIn.get()) {
+        deferred.resolve(authInstance.currentUser.get());
+      } else {
+        deferred.reject();
+      }
     }
 
     function init() {
@@ -54,7 +69,7 @@
 
     function get() {
       if (cachedAuth2) {
-        $q.when(cachedAuth2);
+        return $q.resolve(cachedAuth2);
       } else {
         var deferred = $q.defer();
         GApi.get().then(function(gapi) {
