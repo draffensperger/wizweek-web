@@ -6,7 +6,7 @@
   .service('GApi', GApi);
 
   /** @ngInject */
-  function GApi($q, $document, $window) {
+  function GApi($q, $document, $window, $timeout) {
     var gapiLoaded = false;
     var gapiLoading = false;
     var observerCallbacks = [];
@@ -14,21 +14,21 @@
     this.get = get;
 
     function get() {
-      var deferred = $q.defer();
-      if(gapiLoaded)
-        deferred.resolve($window.gapi);
-      else {
+      if (gapiLoaded) {
+        return $q.when($window.gapi);
+      } else {
+        var deferred = $q.defer();
         observerCallbacks.push(deferred);
-        if(!gapiLoading) {
+        if (!gapiLoading) {
           gapiLoading = true;
-          loadScript(URL).then(function() {
+          loadScript().then(function() {
             gapiLoaded = true;
             gapiLoading = false;
-            observerCallbacks.forEach(function(c) { c.resolve($window.gapi); })
+            observerCallbacks.forEach(function(c) { c.resolve($window.gapi); });
           });
         }
+        return deferred.promise;
       }
-      return deferred.promise;
     }
 
     function loadScript() {
@@ -47,6 +47,6 @@
       script.src = URL;
       $document[0].body.appendChild(script);
       return deferred.promise;
-    };
+    }
   }
 })();
