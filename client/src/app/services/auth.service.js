@@ -7,8 +7,12 @@
 
   /** @ngInject */
   function auth(GAuth, gapiScopes, gapiClientId, $state, $log) {
-    GAuth.setScope(gapiScopes);
-    GAuth.setClient(gapiClientId);
+    GAuth.setConfig({
+      clientId: gapiClientId,
+      scope: gapiScopes,
+      signedInListener: signedInChanged,
+      currentUserListener: currentUserChanged
+    });
 
     var service = {
       checkAuth: checkAuth,
@@ -20,17 +24,28 @@
     }
     return service;
 
+    function signedInChanged() {
+    }
+
+    function currentUserChanged(currentUser) {
+      if (currentUser) {
+        loggedIn(currentUser);
+      } else {
+        notLoggedIn();
+      }
+    }
+
     function checkAuth() {
-      GAuth.checkAuth().then(loggedIn, notLoggedIn);
+      GAuth.checkAuth();
     }
 
     function login() {
       service.loggingIn = true;
-      GAuth.signIn().then(loggedIn, notLoggedIn);
+      GAuth.signIn();
     }
 
     function logout() {
-      GAuth.logout().then(notLoggedIn);
+      GAuth.signOut();
     }
 
     function loggedIn(user) {

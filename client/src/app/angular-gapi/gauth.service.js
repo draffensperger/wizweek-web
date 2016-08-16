@@ -7,52 +7,45 @@
 
   /** @ngInject */
   function GAuth(GApi, $q) {
-    var clientId = null;
-    var scope = '';
+    var config;
     var cachedAuth2 = null;
     var initialized = false;
 
     var service = {
+      setConfig: setConfig,
       checkAuth: checkAuth,
-      setClient: setClient,
-      setScope: setScope,
-      signIn: signIn
+      signIn: signIn,
+      signOut: signOut
     };
     return service;
 
-    function setClient(clientIdVal) {
-      clientId = clientIdVal;
-    }
-
-    function setScope(scopeVal) {
-      scope = scopeVal;
-    }
-
-    function checkAuth() {
-      var deferred = $q.defer();
-      init().then(function(auth2) {
-        resolveLoginPromise(deferred, auth2);
-      });
-      return deferred.promise;
+    // Takes an object like this:
+    // {
+    //   clientId: 'xyz.apps.googleusercontent.com',
+    //   scope: 'https://www.googleapis.com/auth/calendar',
+    //   signedInListener: function(signedIn) { ... },
+    //   currentUserListener: function(currentUser) { ... }
+    // }
+    function setConfig(conf) {
+      config = conf;
     }
 
     function signIn() {
-      var deferred = $q.defer();
       init().then(function(auth2) {
-        auth2.getAuthInstance().signIn().then(function() {
-          resolveLoginPromise(deferred, auth2);
-        });
+        auth2.getAuthInstance().signIn();
       });
-      return deferred.promise;
     }
 
-    function resolveLoginPromise(deferred, auth2) {
-      var authInstance = auth2.getAuthInstance();
-      if (authInstance.isSignedIn.get()) {
-        deferred.resolve(authInstance.currentUser.get());
-      } else {
-        deferred.reject();
-      }
+    function signOut() {
+      init().then(function(auth2) {
+        auth2.getAuthInstance().signOut();
+      });
+    }
+
+    function checkAuth() {
+      // init() checks the authentiation but by just calling it (but not
+      // returning it) we avoid exposing promise that would return the auth2 instance.
+      init();
     }
 
     function init() {
@@ -60,11 +53,22 @@
         return get();
       } else {
         return get().then(function(auth2) {
-          auth2.init({ client_id: clientId, scope: scope })
+          auth2.init({ client_id: config.clientId, scope: config.scope });
+          setupListeners(auth2);
           initialized = true;
           return auth2;
         });
       }
+    }
+
+    function setupListeners(auth2) {
+      var authInstance = auth2.getAuthInstance();
+      authInstance.isSignedIn.listen(config.signedInListener);
+      authInstance.currentUser.listen(config.currentUserListener);
+
+      // Send the listeners the inital value after the init
+      config.signedInListener(authInstance.isSignedIn.get());
+      config.currentUserListener(authInstance.currentUser.get());
     }
 
     function get() {
