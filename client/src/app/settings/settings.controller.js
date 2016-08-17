@@ -9,6 +9,7 @@
   function SettingsController(GApi, $log) {
     var vm = this;
     vm.calendars = [];
+    vm.weekDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];;
 
     activate();
 
