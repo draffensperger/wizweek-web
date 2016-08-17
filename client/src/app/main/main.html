@@ -7,7 +7,7 @@
   <span us-spinner="{radius:30, width:8, length: 16}"></span>
 </div>
 
-<div class="container main-content" ng-show="main.auth.signedIn">
+<div class="container main-content" ng-if="main.auth.signedIn">
   <div class="row">
     <div class="col-md-12">
       <div ui-view></div>

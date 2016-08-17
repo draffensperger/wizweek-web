@@ -17,8 +17,6 @@
     vm.isActive = isActive;
 
     function isActive(state) {
-      console.log(state);
-      console.log($state);
       return $state.current.name == state;
     }
   }

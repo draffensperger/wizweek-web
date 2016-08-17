@@ -6,8 +6,28 @@
   .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController(auth) {
+  function SettingsController(GApi, $log) {
     var vm = this;
-    vm.auth = auth;
+    vm.calendars = [];
+
+    activate();
+
+    function activate() {
+      getCalendars();
+    }
+
+    function getCalendars() {
+      GApi.request({
+        path: '/calendar/v3/users/me/calendarList'
+      }).then(
+        function(resp) {
+          vm.calendars = resp.result.items;
+        },
+        function() {
+          vm.calendars = [];
+          $log.debug('Calendar call failed!');
+        }
+      );
+    }
   }
 })();

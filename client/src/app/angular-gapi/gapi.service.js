@@ -12,6 +12,13 @@
     var observerCallbacks = [];
 
     this.get = get;
+    this.request = request;
+
+    function request(args) {
+      return get().then(function(gapi) {
+        return gapi.client.request(args);
+      });
+    }
 
     function get() {
       if (gapiLoaded) {
@@ -21,14 +28,24 @@
         observerCallbacks.push(deferred);
         if (!gapiLoading) {
           gapiLoading = true;
-          loadScript().then(function() {
+          loadWithClientAndAuth().then(function(gapi) {
             gapiLoaded = true;
             gapiLoading = false;
-            observerCallbacks.forEach(function(c) { c.resolve($window.gapi); });
+            observerCallbacks.forEach(function(c) { c.resolve(gapi); });
           });
         }
         return deferred.promise;
       }
+    }
+
+    function loadWithClientAndAuth() {
+      var deferred = $q.defer();
+      loadScript().then(function(gapi) {
+        gapi.load('client:auth2', function() {
+          deferred.resolve(gapi);
+        });
+      });
+      return deferred.promise;
     }
 
     function loadScript() {
@@ -36,7 +53,7 @@
 
       var deferred = $q.defer();
       $window._gapiOnLoad = function(){
-        deferred.resolve();
+        deferred.resolve($window.gapi);
       }
       var script = $document[0].createElement('script');
       script.onerror = function (e) {

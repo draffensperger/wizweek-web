@@ -64,14 +64,10 @@
       if (cachedAuth2) {
         return $q.resolve(cachedAuth2);
       } else {
-        var deferred = $q.defer();
-        GApi.get().then(function(gapi) {
-          gapi.load('client:auth2', function() {
-            cachedAuth2 = gapi.auth2;
-            deferred.resolve(gapi.auth2);
-          });
+        return GApi.get().then(function(gapi) {
+          cachedAuth2 = gapi.auth2;
+          return gapi.auth2;
         });
-        return deferred.promise;
       }
     }
   }
