@@ -26,7 +26,15 @@
       } else {
         value = defaultValue;
       }
+      parseDates(value.workStartTimes);
+      parseDates(value.workEndTimes);
       return $q.resolve(value);
+    }
+
+    function parseDates(values) {
+      for (var i = 0; i < values.length; i++) {
+        values[i] = new Date(values[i]);
+      }
     }
   }
 })();
