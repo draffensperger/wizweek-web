@@ -10,16 +10,9 @@
   });
 
   /** @ngInject */
-  function MainController(auth, lastSignIn, $state) {
+  function MainController(auth, lastSignIn) {
     var vm = this;
     vm.auth = auth;
     vm.lastSignIn = lastSignIn;
-    vm.isActive = isActive;
-
-    function isActive(state) {
-      console.log(state);
-      console.log($state);
-      return $state.current.name == state;
-    }
   }
 })();

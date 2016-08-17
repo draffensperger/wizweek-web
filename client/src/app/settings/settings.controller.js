@@ -3,10 +3,10 @@
 
   angular
   .module('wizweekPy')
-  .controller('DashboardController', DashboardController);
+  .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function DashboardController(auth) {
+  function SettingsController(auth) {
     var vm = this;
     vm.auth = auth;
   }

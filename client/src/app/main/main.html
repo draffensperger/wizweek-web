@@ -1,37 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="nav navbar-brand" ui-sref="home">WizWeek</a>
-    </div>
-
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav" ng-show="main.auth.signedIn">
-        <li ng-class="{ active: main.isActive('home')}">
-          <a ui-sref="home">Tasks</a>
-        </li>
-        <li ng-class="{ active: main.isActive('settings')}">
-          <a ui-sref="settings">Settings</a>
-        </li>
-      </ul>
-
-      <form class="navbar-text navbar-form navbar-right">
-        <div ng-show="main.auth.signedIn">
-          {{main.auth.userEmail}}
-          <a ng-click="main.auth.signOut()" href="">Log out</a>
-        </div>
-        <div ng-show="!main.auth.signedIn && !main.lastSignIn.isLikelyActive()">
-          <a ng-click="main.auth.signIn()" href="">Login with Google</a>
-        </div>
-      </form>
-    </div><!--/.navbar-collapse -->
-  </div>
-</nav>
+<ww-navbar></ww-navbar>
 
 <ww-welcome ng-show="!main.auth.signedIn && !main.lastSignIn.isLikelyActive()">
 </ww-welcome>
@@ -47,3 +14,5 @@
     </div>
   </div>
 </div>
+
+<ww-footer></ww-footer>
