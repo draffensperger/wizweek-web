@@ -1,9 +1,25 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WizWeek</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="nav navbar-brand" ui-sref="home">WizWeek</a>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" ng-show="main.auth.signedIn">
+        <li ng-class="{ active: main.isActive('home')}">
+          <a ui-sref="home">Tasks</a>
+        </li>
+        <li ng-class="{ active: main.isActive('settings')}">
+          <a ui-sref="settings">Settings</a>
+        </li>
+      </ul>
+
       <form class="navbar-text navbar-form navbar-right">
         <div ng-show="main.auth.signedIn">
           {{main.auth.userEmail}}
@@ -24,5 +40,5 @@
     <span us-spinner="{radius:30, width:8, length: 16}"></span>
   </div>
 
-  <ww-dashboard ng-show="main.auth.signedIn"></ww-dashboard>
+  <div ui-view ng-show="main.auth.signedIn"></div>
 </div>

@@ -39,6 +39,16 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   padding-top: 1em;
 }
 
+a.nav.navbar-brand {
+  &:hover, &:active, &:focus {
+    color: #5AADBB;
+  }
+}
+a.nav.navbar-brand:focus {
+  /*color: green;*/
+}
+
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

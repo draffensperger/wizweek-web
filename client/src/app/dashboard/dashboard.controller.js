@@ -3,11 +3,7 @@
 
   angular
   .module('wizweekPy')
-  .component('wwDashboard', {
-    controller: DashboardController,
-    controllerAs: 'dash',
-    templateUrl: '/app/dashboard/dashboard.html'
-  });
+  .controller('DashboardController', DashboardController);
 
   /** @ngInject */
   function DashboardController(auth) {
