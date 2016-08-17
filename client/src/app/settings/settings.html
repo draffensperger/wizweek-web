@@ -12,7 +12,7 @@
       <label for="appointments-cal">Appointments calendar</label>
       <select id="appointments-cal" class="form-control"
         ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
-        ng-model="$ctrl.settings.appointmentsCalId"
+        ng-model="$ctrl.settings.appointmentsCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
       WizWeek will treat events on this calendar as fixed meetings and will schedule your project tasks around them.
@@ -24,7 +24,7 @@
       <label for="tasks-cal">Tasks calendar (will be overwritten)</label>
       <select id="tasks-cal" class="form-control"
         ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
-        ng-model="$ctrl.settings.tasksCalId"
+        ng-model="$ctrl.settings.tasksCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
       WizWeek will <b>overwrite future events</b> on this calendar and replace them with automatically scheduled project work tasks.
@@ -48,11 +48,15 @@
 <div class="row" ng-repeat="day in $ctrl.weekDays">
   <div class="col-md-1">{{day}}</div>
   <div class="col-md-2">
-    <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"
+    <div uib-timepicker hour-step="1" minute-step="1" show-spinners="false"
+      mousewheel="false" pad-hours="false"
+      ng-model-options="{ debounce:800 }" ng-change="$ctrl.saveSettings()"
       ng-model="$ctrl.settings.workStartTimes[$index]"></div>
   </div>
   <div class="col-md-2">
-    <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"
+    <div uib-timepicker hour-step="1" minute-step="1" show-spinners="false"
+      mousewheel="false" pad-hours="false"
+      ng-model-options="{ debounce:800 }" ng-change="$ctrl.saveSettings()"
       ng-model="$ctrl.settings.workEndTimes[$index]"></div>
   </div>
 </div>
