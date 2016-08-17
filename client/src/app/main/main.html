@@ -33,12 +33,17 @@
   </div>
 </nav>
 
-<div class="main-content">
-  <ww-welcome ng-show="!main.auth.signedIn && !main.lastSignIn.isLikelyActive()"></ww-welcome>
+<ww-welcome ng-show="!main.auth.signedIn && !main.lastSignIn.isLikelyActive()">
+</ww-welcome>
 
-  <div ng-show="!main.auth.signedIn && main.lastSignIn.isLikelyActive()">
-    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+<div ng-show="!main.auth.signedIn && main.lastSignIn.isLikelyActive()">
+  <span us-spinner="{radius:30, width:8, length: 16}"></span>
+</div>
+
+<div class="container main-content" ng-show="main.auth.signedIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div ui-view></div>
+    </div>
   </div>
-
-  <div ui-view ng-show="main.auth.signedIn"></div>
 </div>
