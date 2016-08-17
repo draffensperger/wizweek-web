@@ -9,7 +9,11 @@
   function SettingsController(GApi, $log) {
     var vm = this;
     vm.calendars = [];
-    vm.weekDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];;
+    vm.weekDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    vm.settings = {
+      appointmentsCalId: null, tasksCalId: null,
+      workStartTimes: [], workEndTimes: []
+    };
 
     activate();
 
@@ -23,6 +27,7 @@
       }).then(
         function(resp) {
           vm.calendars = resp.result.items;
+          console.log(vm.calendars);
         },
         function() {
           vm.calendars = [];

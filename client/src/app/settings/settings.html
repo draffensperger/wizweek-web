@@ -1,68 +1,58 @@
-<h3>Settings</h3>
+<div class="row">
+  <div class="col-md-5"><h3>Settings</h3></div>
+</div>
 
+<div class="row">
+  <div class="col-md-5"><h4>Calendars</h4></div>
+</div>
 
-<form>
-  <div class="containers">
-    <div class="row">
-      <div class="col-md-5"><h4>Calendars</h4></div>
+<div class="row">
+  <div class="col-md-5">
+    <div class="form-group">
+      <label for="appointments-cal">Appointments calendar</label>
+      <select id="appointments-cal" class="form-control"
+        ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
+        ng-model="$ctrl.settings.appointmentsCalId"
+        >
+      </select>
+      WizWeek will treat events on this calendar as fixed meetings and will schedule your project tasks around them.
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-5">
-        <div class="form-group">
-          <label for="appointments-cal">Appointments calendar</label>
-          <select id="appointments-cal" class="form-control">
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="three">Three</option>
-            <option value="four">Four</option>
-            <option value="five">Five</option>
-          </select>
-            WizWeek will treat events on this calendar as fixed meetings and will schedule your project tasks around them.
-        </div>
-      </div>
-
-      <div class="col-md-5">
-        <div class="form-group">
-          <label for="tasks-cal">Tasks calendar (will be overwritten)</label>
-          <select id="tasks-cal" class="form-control">
-            <option value="one">One</option>
-            <option value="two">Two</option>
-            <option value="three">Three</option>
-            <option value="four">Four</option>
-            <option value="five">Five</option>
-          </select>
-          WizWeek will <b>overwrite future events</b> on this calendar and replace them with automatically scheduled project work tasks.
-        </div>
-      </div>
-
+  <div class="col-md-5">
+    <div class="form-group">
+      <label for="tasks-cal">Tasks calendar (will be overwritten)</label>
+      <select id="tasks-cal" class="form-control"
+        ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
+        ng-model="$ctrl.settings.tasksCalId"
+        >
+      </select>
+      WizWeek will <b>overwrite future events</b> on this calendar and replace them with automatically scheduled project work tasks.
     </div>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-md-5">
-        <h4>Work Schedule</h4>
-        WizWeek will schedule your project tasks within your work hours (except when you have an event in your appointments calendar).
-    </div>
-      </div>
+<div class="row">
+  <div class="col-md-5">
+    <h4>Work Schedule</h4>
+    WizWeek will schedule your project tasks within your work hours, except when you have an event in your appointments calendar.
+  </div>
+</div>
 
-    <div class="row">
-      <div class="col-md-1"><h5>Day</h5></div>
-      <div class="col-md-2"><h5>Start</h5></div>
-      <div class="col-md-2"><h5>End</h5></div>
-    </div>
+<div class="row">
+  <div class="col-md-1"><h5>Day</h5></div>
+  <div class="col-md-2"><h5>Start</h5></div>
+  <div class="col-md-2"><h5>End</h5></div>
+</div>
 
-    <div class="row" ng-repeat="day in settings.weekDays">
-      <div class="col-md-1">{{day}}</div>
-      <div class="col-md-2">
-        <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"></div>
-      </div>
-      <div class="col-md-2">
-        <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"></div>
-      </div>
-    </div>
-
-  </form>
-
-  <!--<div ng-repeat="calendar in settings.calendars">-->
-    <!--{{calendar.summary}}-->
-  <!--</div>-->
+<div class="row" ng-repeat="day in $ctrl.weekDays">
+  <div class="col-md-1">{{day}}</div>
+  <div class="col-md-2">
+    <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"
+      ng-model="$ctrl.settings.workStartTimes[$index]"></div>
+  </div>
+  <div class="col-md-2">
+    <div uib-timepicker hour-step="1" minute-step="30" show-spinners="false"
+      ng-model="$ctrl.settings.workEndTimes[$index]"></div>
+  </div>
+</div>

@@ -18,7 +18,7 @@
         url: '/settings',
         templateUrl: 'app/settings/settings.html',
         controller: 'SettingsController',
-        controllerAs: 'settings'
+        controllerAs: '$ctrl'
       })
 
     $urlRouterProvider.otherwise('/');
