@@ -36,14 +36,11 @@ def google_authorized(fn):
     def _wrap(*args, **kwargs):
         if 'Authorization' not in request.headers:
             # Unauthorized
-            print("No token in header")
             abort(401)
             return None
 
-        print("Checking token...")
         user_email = validate_token(request.headers['Authorization'])
         if user_email is None:
-            print("Check returned FAIL!")
             # Unauthorized
             abort(401)
             return None
