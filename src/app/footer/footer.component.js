@@ -6,7 +6,7 @@
   .component('wwFooter', {
     controller: FooterController,
     controllerAs: 'footer',
-    templateUrl: '/app/footer/footer.html'
+    templateUrl: 'app/footer/footer.html'
   });
 
   /** @ngInject */

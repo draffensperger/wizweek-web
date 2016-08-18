@@ -6,7 +6,7 @@
   .component('wwNavbar', {
     controller: NavbarController,
     controllerAs: 'navbar',
-    templateUrl: '/app/navbar/navbar.html'
+    templateUrl: 'app/navbar/navbar.html'
   });
 
   /** @ngInject */

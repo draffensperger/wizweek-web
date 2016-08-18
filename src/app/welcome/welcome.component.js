@@ -6,7 +6,7 @@
   .component('wwWelcome', {
     controller: WelcomeController,
     controllerAs: 'welcome',
-    templateUrl: '/app/welcome/welcome.html'
+    templateUrl: 'app/welcome/welcome.html'
   });
 
   /** @ngInject */
