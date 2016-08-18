@@ -7,5 +7,5 @@
     .constant('malarkey', malarkey)
     .constant('moment', moment)
     .constant('gapiScopes', 'https://www.googleapis.com/auth/calendar')
-    .constant('gapiClientId', '944131974902-59t0ekqanbv7krguorbl3c0fk5rosika.apps.googleusercontent.com')
+    .constant('gapiClientId', '562801966668-qu83ib47l7bqcddpvd7qtkescdohg4e7.apps.googleusercontent.com')
 })();

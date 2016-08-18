@@ -14,5 +14,11 @@
     var vm = this;
     vm.auth = auth;
     vm.lastSignIn = lastSignIn;
+
+    activate();
+
+    function activate() {
+      //auth.checkAuth();
+    }
   }
 })();

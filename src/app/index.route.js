@@ -8,18 +8,26 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/dashboard/dashboard.html',
-        controller: 'DashboardController',
-        controllerAs: 'dash'
-      })
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'app/settings/settings.html',
-        controller: 'SettingsController',
-        controllerAs: '$ctrl'
-      })
+    .state('main',  {
+      abstract: true,
+      templateUrl: 'app/layout/main.html'
+    })
+    .state('main.authorized', {
+      abstract: true,
+      templateUrl: 'app/layout/authorized.html'
+    })
+    .state('main.authorized.home', {
+      url: '/',
+      templateUrl: 'app/dashboard/dashboard.html',
+      controller: 'DashboardController',
+      controllerAs: 'dash'
+    })
+    .state('main.authorized.settings', {
+      url: '/settings',
+      templateUrl: 'app/settings/settings.html',
+      controller: 'SettingsController',
+      controllerAs: '$ctrl'
+    })
 
     $urlRouterProvider.otherwise('/');
   }

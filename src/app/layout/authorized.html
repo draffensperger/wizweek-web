@@ -1,0 +1,10 @@
+<ww-welcome ng-show="!authorized.auth.signedIn && !authorized.lastSignIn.isLikelyActive()">
+</ww-welcome>
+
+<div ng-show="!authorized.auth.signedIn && authorized.lastSignIn.isLikelyActive()">
+  <span us-spinner="{radius:30, width:8, length: 16}"></span>
+</div>
+
+<div ng-if="authorized.auth.signedIn">
+  <div ui-view></div>
+</div>
