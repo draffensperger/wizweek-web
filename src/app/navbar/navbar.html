@@ -13,10 +13,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" ng-show="navbar.auth.signedIn">
         <li ng-class="{ active: navbar.isActive('home')}">
-          <a ui-sref="home">Tasks</a>
+          <a ui-sref="main.authorized.dashboard">Tasks</a>
         </li>
         <li ng-class="{ active: navbar.isActive('settings')}">
-          <a ui-sref="settings">Settings</a>
+          <a ui-sref="main.authorized.settings">Settings</a>
         </li>
       </ul>
 

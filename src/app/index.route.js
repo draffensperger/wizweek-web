@@ -10,13 +10,17 @@
     $stateProvider
     .state('main',  {
       abstract: true,
-      templateUrl: 'app/layout/main.html'
+      templateUrl: 'app/layout/main.html',
+      controller: 'MainController',
+      controllerAs: 'main'
     })
     .state('main.authorized', {
       abstract: true,
-      templateUrl: 'app/layout/authorized.html'
+      templateUrl: 'app/layout/authorized.html',
+      controller: 'AuthorizedController',
+      controllerAs: 'authorized'
     })
-    .state('main.authorized.home', {
+    .state('main.authorized.dashboard', {
       url: '/',
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'DashboardController',
