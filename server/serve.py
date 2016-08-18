@@ -1,47 +1,40 @@
 import json
-
 import os
 import flask
-import httplib2
+from flask import jsonify
+from flask_restful import Resource, Api
 
-from apiclient import discovery
-from oauth2client import client
-from oauth2client.client import OAuth2WebServerFlow
-from IPython import embed 
+import base64
+
+
+
+from google_authorized_decorator import google_authorized
+
+from gcloud import datastore
+from oauth2client import service_account
 
 app = flask.Flask(__name__)
+api = Api(app) 
 
-@app.route('/')
-def index():
-    if 'credentials' not in flask.session:
-        return flask.redirect(flask.url_for('oauth2callback'))
-    credentials = client.OAuth2Credentials.from_json(flask.session['credentials'])
-    if credentials.access_token_expired:
-        return flask.redirect(flask.url_for('oauth2callback'))
-    else:
-      http_auth = credentials.authorize(httplib2.Http())
-    drive_service = discovery.build('drive', 'v2', http_auth)
-    files = drive_service.files().list().execute()
-    return json.dumps(files)
+class Settings(Resource):
+    @google_authorized
+    def get(self, user_email):
+        return jsonify({ 'email': user_email })
 
-@app.route('/oauth2callback')
-def oauth2callback():
-    flow = OAuth2WebServerFlow(client_id=os.environ.get('OAUTH_CLIENT_ID'),
-            client_secret=os.environ.get('OAUTH_SECRET'),
-            scope='https://www.googleapis.com/auth/calendar',
-            redirect_uri=flask.url_for('oauth2callback', _external=True))
+    @google_authorized
+    def put(self, user_email):
+        return jsonify({ 'email': user_email })
 
-    if 'code' not in flask.request.args:
-        auth_uri = flow.step1_get_authorize_url()
-        return flask.redirect(auth_uri)
-    else:
-        auth_code = flask.request.args.get('code')
-        credentials = flow.step2_exchange(auth_code)
-        flask.session['credentials'] = credentials.to_json()
-        return flask.redirect(flask.url_for('index'))
+api.add_resource(Settings, '/settings')
+
+def create_client():
+    creds_json = base64.b64decode(os.environ['SERVICE_ACCOUNT_JSON_BASE64']).decode()
+    creds_dict = json.loads(creds_json)
+    cred = service_account.ServiceAccountCredentials.from_json_keyfile_dict(creds_dict)
+    return datastore.Client(project=creds_dict['project_id'], credentials=cred)
 
 if __name__ == '__main__':
-    import uuid
-    app.secret_key = str(uuid.uuid4())
+    db_client = create_client()
+    app.secret_key = str(os.environ['FLASK_SECRET_KEY'])
     app.debug = False
     app.run()
