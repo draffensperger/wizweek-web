@@ -2,7 +2,8 @@ language: node_js
 env:
   global:
     - ENCRYPTION_LABEL: 9642c89db52e
-    - COMMIT_AUTHOR_EMAIL: draff8660+travisci@gmail.com
+    - GIT_DEPLOY_USERNAME: TravisCI
+    - GIT_DEPLOY_EMAIL: draff8660+travisci@gmail.com
 cache:
   directories:
     - node_modules

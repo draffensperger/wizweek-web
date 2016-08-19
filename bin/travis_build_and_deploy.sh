@@ -5,10 +5,6 @@ set -o verbose #echo each command as it runs
 # Run the gulp build for the site
 ./node_modules/gulp/bin/gulp.js build
 
-# Set the git config for the commit to the gh-pages branch
-git config user.name "Travis CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
-
 # Decrypt the SSH key. Script taken from:
 # https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc
@@ -25,7 +21,7 @@ ssh-add deploy_key
 # Switch the $repo variable for the push_to_gh_pages.sh script so that it will
 # work correctly on TravisCI and use the SSH authentication.
 HTTPS_REPO=`git config remote.origin.url`
-repo=${HTTPS_REPO/https:\/\/github.com\//git@github.com:}
+GIT_DEPLOY_REPO=${HTTPS_REPO/https:\/\/github.com\//git@github.com:}
 
 # Now we can push to github pages
 bin/push_to_gh_pages.sh
