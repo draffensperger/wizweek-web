@@ -2,6 +2,8 @@
 
 ## Deploying to GitHub pages
 
+[![Build Status](https://travis-ci.org/draffensperger/wizweek-web.svg?branch=master)](https://travis-ci.org/draffensperger/wizweek-web)
+
 The wizweek.com site runs via CloudFlare pointed at GitHub pages (with
     wizweek.com configured as custom domain name).
 
