@@ -6,9 +6,25 @@
   .service('api', api);
 
   /** @ngInject */
-  function api() {
+  function api(auth, $http) {
     var service = {
-    }
+      saveSettings: saveSettings,
+      loadSettings: loadSettings
+    };
     return service;
+
+    function loadSettings() {
+      return $http.get(
+        'https://wizweek-api.herokuapp.com/settings',
+        { headers: { 'Authorization': 'Bearer ' + auth.token } }
+      );
+    }
+
+    function saveSettings() {
+      return settings().query();
+    }
+
+    function settings() {
+    }
   }
 })();

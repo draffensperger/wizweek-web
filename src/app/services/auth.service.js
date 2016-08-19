@@ -20,7 +20,8 @@
       signedIn: false,
       signingIn: false,
       userEmail: null,
-      userName: null
+      userName: null,
+      token: null
     }
     return service;
 
@@ -30,10 +31,12 @@
       if (service.signedIn) {
         service.userEmail = user.getBasicProfile().getEmail();
         service.userName = user.getBasicProfile().getName();
+        service.token = user.getAuthResponse().access_token;
         lastSignIn.signedIn(user.getAuthResponse().expires_at);
       } else {
         service.userEmail = null;
         service.userName = null;
+        service.token = null;
         lastSignIn.signedOut();
       }
       $rootScope.$digest();

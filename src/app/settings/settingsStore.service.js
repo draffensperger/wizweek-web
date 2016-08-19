@@ -6,7 +6,9 @@
   .service('settingsStore', settingsStore);
 
   /** @ngInject */
-  function settingsStore($q, $window) {
+  function settingsStore($q, $window, api) {
+    var settings = null;
+
     var service = {
       load: load,
       save: save
@@ -14,21 +16,16 @@
     return service;
 
     function save(value) {
-      $window.localStorage.settings = angular.toJson(value);
-      return $q.resolve();
+      return api.saveSettings(value);
     }
 
     function load(defaultValue) {
-      var settingsStored = $window.localStorage.settings;
-      var value;
-      if (settingsStored) {
-        value = angular.fromJson(settingsStored);
+      if (settings) {
+        // If we've already loaded the settings once, just give that.
+        return $q.resolve(settings);
       } else {
-        value = defaultValue;
+        return api.loadSettings();
       }
-      parseDates(value.workStartTimes);
-      parseDates(value.workEndTimes);
-      return $q.resolve(value);
     }
 
     function parseDates(values) {

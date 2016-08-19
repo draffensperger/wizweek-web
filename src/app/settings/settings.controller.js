@@ -32,8 +32,8 @@
     }
 
     function loadSettings() {
-      settingsStore.load(defaultSettings).then(function(value) {
-        vm.settings = value;
+      settingsStore.load(defaultSettings).then(function(resp) {
+        vm.settings = resp.data;
       });
     }
 
