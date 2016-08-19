@@ -11,6 +11,4 @@ before_script:
   - npm install -g bower
   - bower install
 script:
-  - ./node_modules/gulp/bin/gulp.js build
-after_script:
-  - bin/travis_deploy.sh
+  - bin/travis_build_and_deploy.sh

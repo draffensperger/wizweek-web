@@ -3,6 +3,13 @@
 # Taken from https://github.com/X1011/git-directory-deploy
 
 set -o errexit #abort if any command fails
+
+# echo each command as it runs but only in Travis/CI
+if [ "$CI" = "true" ]
+then
+   set -o verbose 
+fi
+
 me=$(basename "$0")
 
 help_message="\

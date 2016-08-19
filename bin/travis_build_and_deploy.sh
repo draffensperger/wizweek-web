@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -o errexit #abort if any command fails
+set -o verbose #echo each command as it runs
 
+# Run the gulp build for the site
+./node_modules/gulp/bin/gulp.js build
+
+# Set the git config for the commit to the gh-pages branch
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
