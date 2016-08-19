@@ -5,6 +5,10 @@ set -o verbose #echo each command as it runs
 # Run the gulp build for the site
 ./node_modules/gulp/bin/gulp.js build
 
+# store a CNAME file in the dist folder as the commit would otherwise
+# overwrite it.
+echo $GH_PAGES_CNAME > dist/CNAME
+
 # Decrypt the SSH key. Script taken from:
 # https://gist.github.com/domenic/ec8b0fc8ab45f39403dd
 # Get the deploy key by using Travis's stored variables to decrypt deploy_key.enc

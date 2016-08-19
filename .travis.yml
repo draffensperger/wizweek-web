@@ -4,6 +4,7 @@ env:
     - ENCRYPTION_LABEL: 9642c89db52e
     - GIT_DEPLOY_USERNAME: TravisCI
     - GIT_DEPLOY_EMAIL: draff8660+travisci@gmail.com
+    - GH_PAGES_CNAME: wizweek.com
 cache:
   directories:
     - node_modules
