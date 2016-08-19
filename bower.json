@@ -13,7 +13,7 @@
     "bootstrap-sass": "~3.3.5",
     "angular-bootstrap": "~1.3.3",
     "malarkey": "yuanqing/malarkey#~1.3.1",
-    "angular-toastr": "^2.0.0",
+    "angular-toastr": "git://github.com/Foxandxss/angular-toastr.git#4591f465197b214c756900cadbe72c382601d4a3",
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
     "angular": "~1.5.3",
