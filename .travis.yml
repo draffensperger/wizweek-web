@@ -3,10 +3,14 @@ env:
   global:
     - ENCRYPTION_LABEL: 9642c89db52e
     - COMMIT_AUTHOR_EMAIL: draff8660+travisci@gmail.com
+cache:
+  directories:
+    - node_modules
+    - bower_components
 before_script:
   - npm install -g bower
   - bower install
 script:
   - ./node_modules/gulp/bin/gulp.js build
-after_success:
+after_script:
   - bin/travis_deploy.sh

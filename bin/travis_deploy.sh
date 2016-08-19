@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -o errexit #abort if any command fails
+
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
