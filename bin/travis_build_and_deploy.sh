@@ -21,6 +21,8 @@ ssh-add deploy_key
 # Switch the $repo variable for the push_to_gh_pages.sh script so that it will
 # work correctly on TravisCI and use the SSH authentication.
 HTTPS_REPO=`git config remote.origin.url`
+
+# We need to use export so that the `push_to_gh_pages.sh` can see it
 export GIT_DEPLOY_REPO=${HTTPS_REPO/https:\/\/github.com\//git@github.com:}
 
 # Now we can push to github pages
