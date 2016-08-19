@@ -7,7 +7,7 @@
 The wizweek.com site runs via CloudFlare pointed at GitHub pages (with
     wizweek.com configured as custom domain name).
 
-To build and deploy the site, run `gulp build` then `./deploy.sh` (script
+To build and deploy the site, run `gulp build` then `bin/deploy.sh` (script
     courtesty of
     [X1011/git-directory-deploy](https://github.com/X1011/git-directory-deploy)
 ).
