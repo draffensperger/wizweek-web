@@ -10,7 +10,8 @@
     .module('wizweekPy', [
       'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria',
       'ngResource', 'ui.router', 'ui.bootstrap', 'toastr', 'angular-gapi',
-      'angularSpinner', 'wizweekTemplates'
+      'angularSpinner', 'wizweekTemplates',
+      'ui.grid', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.cellNav'
     ]);
 
 })();
