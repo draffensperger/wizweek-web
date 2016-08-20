@@ -20,11 +20,12 @@
       );
     }
 
-    function saveSettings() {
-      return settings().query();
-    }
-
-    function settings() {
+    function saveSettings(settings) {
+      return $http.put(
+        'https://wizweek-api.herokuapp.com/settings',
+        settings,
+        { headers: { 'Authorization': 'Bearer ' + auth.token } }
+      )
     }
   }
 })();

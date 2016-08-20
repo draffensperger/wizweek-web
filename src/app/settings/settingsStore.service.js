@@ -19,12 +19,19 @@
       return api.saveSettings(value);
     }
 
-    function load(defaultValue) {
+    function load(defaultSettings) {
       if (settings) {
         // If we've already loaded the settings once, just give that.
         return $q.resolve(settings);
       } else {
-        return api.loadSettings();
+        return api.loadSettings().then(function(resp) {
+          // If the loaded settings lack any of the settings attributes, we will
+          // get them from the default settings.
+          settings = angular.extend({}, defaultSettings, resp.data);
+          parseDates(settings.workStartTimes);
+          parseDates(settings.workEndTimes);
+          return settings;
+        });
       }
     }
 
