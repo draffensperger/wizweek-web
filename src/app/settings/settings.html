@@ -11,7 +11,7 @@
     <div class="form-group">
       <label for="appointments-cal">Appointments calendar</label>
       <select id="appointments-cal" class="form-control"
-        ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
+        ng-options="cal.id as cal.summary for cal in $ctrl.calendars"
         ng-model="$ctrl.settings.appointmentsCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
@@ -23,7 +23,7 @@
     <div class="form-group">
       <label for="tasks-cal">Tasks calendar (will be overwritten)</label>
       <select id="tasks-cal" class="form-control"
-        ng-options="cal.summary for cal in $ctrl.calendars track by cal.id"
+        ng-options="cal.id as cal.summary for cal in $ctrl.calendars"
         ng-model="$ctrl.settings.tasksCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
