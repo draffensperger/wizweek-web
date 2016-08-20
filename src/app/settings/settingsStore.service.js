@@ -16,7 +16,7 @@
     return service;
 
     function save(value) {
-      return api.saveSettings(value);
+      return api.put('settings', value);
     }
 
     function load(defaultSettings) {
@@ -24,7 +24,7 @@
         // If we've already loaded the settings once, just give that.
         return $q.resolve(settings);
       } else {
-        return api.loadSettings().then(function(resp) {
+        return api.get('settings').then(function(resp) {
           // If the loaded settings lack any of the settings attributes, we will
           // get them from the default settings.
           settings = angular.extend({}, defaultSettings, resp.data);

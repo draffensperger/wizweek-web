@@ -8,4 +8,6 @@
     .constant('moment', moment)
     .constant('gapiScopes', 'https://www.googleapis.com/auth/calendar')
     .constant('gapiClientId', '562801966668-qu83ib47l7bqcddpvd7qtkescdohg4e7.apps.googleusercontent.com')
+    .constant('apiBaseUrl', 'https://wizweek-api.herokuapp.com/')
+
 })();

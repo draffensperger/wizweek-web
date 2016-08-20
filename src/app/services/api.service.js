@@ -6,26 +6,29 @@
   .service('api', api);
 
   /** @ngInject */
-  function api(auth, $http) {
+  function api(apiBaseUrl, auth, $http) {
     var service = {
-      saveSettings: saveSettings,
-      loadSettings: loadSettings
+      put: put,
+      get: get,
+      request: request
     };
     return service;
 
-    function loadSettings() {
-      return $http.get(
-        'https://wizweek-api.herokuapp.com/settings',
-        { headers: { 'Authorization': 'Bearer ' + auth.token } }
-      );
+    function get(url) {
+      return request('GET', url);
     }
 
-    function saveSettings(settings) {
-      return $http.put(
-        'https://wizweek-api.herokuapp.com/settings',
-        settings,
-        { headers: { 'Authorization': 'Bearer ' + auth.token } }
-      )
+    function put(url, data) {
+      return request('PUT', url, data);
+    }
+
+    function request(method, url, data) {
+      return $http({
+        method: method,
+        url: apiBaseUrl + url,
+        data: data,
+        headers: { 'Authorization': 'Bearer ' + auth.token }
+      });
     }
   }
 })();
