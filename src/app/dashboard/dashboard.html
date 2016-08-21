@@ -5,6 +5,7 @@
 Welcome {{dash.auth.userName}}!
 
 This page will soon display a list of tasks.
+<br/><br/>
 
 <section id="todoapp">
   <header id="header">
@@ -28,7 +29,7 @@ This page will soon display a list of tasks.
       </li>
     </ul>
   </section>
-  <footer id="footer" ng-show="todos.length" ng-cloak>
+  <div id="footer" ng-show="todos.length" ng-cloak>
     <span id="todo-count"><strong>{{remainingCount}}</strong>
       <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
     </span>
@@ -44,5 +45,5 @@ This page will soon display a list of tasks.
       </li>
     </ul>
     <button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed</button>
-  </footer>
+  </div>
 </section>
