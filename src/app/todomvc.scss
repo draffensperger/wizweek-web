@@ -38,6 +38,10 @@
 	color: #e6e6e6;
 }
 
+#todoapp label {
+	outline: none;
+}
+
 #new-todo, .edit {
 	position: relative;
 	margin: 0;
@@ -46,10 +50,6 @@
 	line-height: 1.4em;
 	border: 0;
 	outline: none;
-  &:focus {
-    /* This is needed given the bootstrap styles */
-    outline: none;
-  }
 	color: inherit;
 	padding: 6px;
 	border: 1px solid #999;
