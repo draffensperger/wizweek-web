@@ -42,9 +42,7 @@
 	position: relative;
 	margin: 0;
 	width: 100%;
-	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
+	font-size: 1.3em;
 	line-height: 1.4em;
 	border: 0;
 	outline: none;
@@ -106,9 +104,13 @@ label[for='toggle-all'] {
 	list-style: none;
 }
 
+#todo-list label {
+  font-weight: normal;
+}
+
 #todo-list li {
 	position: relative;
-	font-size: 24px;
+	font-size: 1.2em;
 	border-bottom: 1px solid #ededed;
 }
 
