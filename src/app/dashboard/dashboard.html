@@ -6,39 +6,44 @@ Welcome {{dash.auth.userName}}!
 
 This page will soon display a list of tasks.
 
-<div class="todoapp">
-  <!-- uiView: --><div class="ng-scope"><app class="ng-scope ng-isolate-scope"><header-component todos="$ctrl.todos" class="ng-isolate-scope"><header class="header">
-          <h1>todos</h1>
-          <todo-text-input new-todo="true" on-save="$ctrl.handleSave(text)" placeholder="What needs to be done?" class="ng-isolate-scope"><input class="textInput ng-pristine ng-valid new-todo ng-empty ng-touched" ng-class="{'edit': $ctrl.editing, 'new-todo': $ctrl.newTodo}" ng-model="$ctrl.text" ng-keypress="$ctrl.handleSubmit($event)" ng-blur="$ctrl.handleBlur()" placeholder="What needs to be done?" type="text"></todo-text-input>
-      </header></header-component>
-      <main-section todos="$ctrl.todos" filter="$ctrl.filter" class="ng-isolate-scope">
-        <section class="main">
-          <!-- ngIf: $ctrl.todos.length --><input ng-if="$ctrl.todos.length" class="toggle-all ng-scope" type="checkbox" ng-checked="$ctrl.todos.reduce($ctrl.completeReducer, 0) === $ctrl.todos.length" ng-click="$ctrl.handleCompleteAll()"><!-- end ngIf: $ctrl.todos.length -->
-          <ul class="todo-list">
-            <!-- ngRepeat: todo in $ctrl.todos.filter($ctrl.selectedFilter.filter) --><todo-item ng-repeat="todo in $ctrl.todos.filter($ctrl.selectedFilter.filter)" todo="todo" on-destroy="$ctrl.handleDestroy(id)" on-change="$ctrl.handleChange(id)" on-save="$ctrl.handleSave(todo)" class="ng-scope ng-isolate-scope"><li ng-class="{'editing': $ctrl.editing, 'completed': $ctrl.todo.completed}" class="">
-                <!-- ngIf: $ctrl.editing -->
-                <!-- ngIf: !$ctrl.editing --><div class="view ng-scope" ng-if="!$ctrl.editing">
-                  <input class="toggle" type="checkbox" ng-checked="$ctrl.todo.completed" ng-click="$ctrl.onChange({id: $ctrl.todo.id})">
-                  <label ng-dblclick="$ctrl.handleDoubleClick()" class="ng-binding">Use AngularJS</label>
-                  <button class="destroy" ng-click="$ctrl.handleDestroy($ctrl.todo.id)"></button>
-                </div><!-- end ngIf: !$ctrl.editing -->
-            </li></todo-item><!-- end ngRepeat: todo in $ctrl.todos.filter($ctrl.selectedFilter.filter) -->
-          </ul>
-          <!-- ngIf: $ctrl.todos.length --><footer-component ng-if="$ctrl.todos.length" completed-count="$ctrl.todos.reduce($ctrl.completeReducer, 0)" active-count="$ctrl.todos.length - $ctr.todos.reduce($ctrl.completeReducer, 0)" filter="$ctrl.selectedFilter" on-clear-completed="$ctrl.handleClearCompleted()" on-show="$ctrl.handleShow(filter)" class="ng-scope ng-isolate-scope"><footer class="footer">
-              <span class="todo-count ng-binding">
-                <strong class="ng-binding">1</strong> item left
-              </span>
-              <ul class="filters">
-                <!-- ngRepeat: filter in $ctrl.filters --><li key="filter" ng-repeat="filter in $ctrl.filters" class="ng-scope">
-                  <a ng-class="{'selected': filter === $ctrl.selectedFilter.type}" ng-click="$ctrl.handleChange(filter)" class="ng-binding selected">All</a>
-                  </li><!-- end ngRepeat: filter in $ctrl.filters --><li key="filter" ng-repeat="filter in $ctrl.filters" class="ng-scope">
-                  <a ng-class="{'selected': filter === $ctrl.selectedFilter.type}" ng-click="$ctrl.handleChange(filter)" class="ng-binding">Active</a>
-                  </li><!-- end ngRepeat: filter in $ctrl.filters --><li key="filter" ng-repeat="filter in $ctrl.filters" class="ng-scope">
-                  <a ng-class="{'selected': filter === $ctrl.selectedFilter.type}" ng-click="$ctrl.handleChange(filter)" class="ng-binding">Completed</a>
-                </li><!-- end ngRepeat: filter in $ctrl.filters -->
-              </ul>
-              <!-- ngIf: $ctrl.completedCount > 0 -->
-          </footer></footer-component><!-- end ngIf: $ctrl.todos.length -->
-      </section></main-section>
-  </app></div>
-</div>
+<section id="todoapp">
+  <header id="header">
+    <h1>todos</h1>
+    <form id="todo-form" ng-submit="addTodo()">
+      <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" ng-disabled="saving" autofocus>
+    </form>
+  </header>
+  <section id="main" ng-show="todos.length" ng-cloak>
+    <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+      <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+        <div class="view">
+          <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+          <label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+          <button class="destroy" ng-click="removeTodo(todo)"></button>
+        </div>
+        <form ng-submit="saveEdits(todo, 'submit')">
+          <input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')" todo-focus="todo == editedTodo">
+        </form>
+      </li>
+    </ul>
+  </section>
+  <footer id="footer" ng-show="todos.length" ng-cloak>
+    <span id="todo-count"><strong>{{remainingCount}}</strong>
+      <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+    </span>
+    <ul id="filters">
+      <li>
+        <a ng-class="{selected: status == ''} " href="#/">All</a>
+      </li>
+      <li>
+        <a ng-class="{selected: status == 'active'}" href="#/active">Active</a>
+      </li>
+      <li>
+        <a ng-class="{selected: status == 'completed'}" href="#/completed">Completed</a>
+      </li>
+    </ul>
+    <button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed</button>
+  </footer>
+</section>
