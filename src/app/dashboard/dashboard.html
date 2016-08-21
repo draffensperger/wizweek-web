@@ -9,9 +9,23 @@ This page will soon display a list of tasks.
 
 <section id="todoapp">
   <header id="header">
+    <div class="row todo-headers">
+      <div class="first-todo-header col-md-4">Task</div>
+      <div class="col-md-2">Hours</div>
+      <div class="col-md-2">Business value</div>
+      <div class="col-md-2">Deadline</div>
+      <div class="col-md-2">On or after</div>
+    </div>
+
     <form id="todo-form" ng-submit="addTodo()">
-      <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" ng-disabled="saving" autofocus>
-    </form>
+      <div class="row">
+        <div class="col-md-6">
+          <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" ng-disabled="saving" autofocus>
+        </div>
+        <div class="col-md-6">
+          <input id="new-reward" placeholder="How much business values does it add? (score 1-100)">
+        </div>
+      </div>
   </header>
   <section id="main" ng-show="todos.length" ng-cloak>
     <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
