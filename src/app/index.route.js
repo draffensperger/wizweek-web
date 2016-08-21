@@ -32,6 +32,18 @@
       controller: 'SettingsController',
       controllerAs: '$ctrl'
     })
+    .state('todomvc', {
+      url: '/todo',
+			controller: 'TodoCtrl',
+			templateUrl: 'app/todomvc/todomvc.html',
+      store: function (todoStorage) {
+        // Get the correct module (API or localStorage).
+        return todoStorage.then(function (module) {
+          module.get(); // Fetch the todo records in the background.
+            return module;
+        });
+      }
+    })
 
     $urlRouterProvider.otherwise('/');
   }
