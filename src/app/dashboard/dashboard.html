@@ -14,17 +14,27 @@ This page will soon display a list of tasks.
       <div class="col-md-2">Hours</div>
       <div class="col-md-2">Business value</div>
       <div class="col-md-2">Deadline</div>
-      <div class="col-md-2">On or after</div>
+      <div class="col-md-2">Min start date</div>
     </div>
 
     <form id="todo-form" ng-submit="addTodo()">
       <div class="row">
-        <div class="col-md-6">
-          <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" ng-disabled="saving" autofocus>
+        <div class="col-md-4">
+          <input class="new-todo first-field" placeholder="Project/task name?" ng-model="newTodo" ng-disabled="saving" autofocus>
         </div>
-        <div class="col-md-6">
-          <input id="new-reward" placeholder="How much business values does it add? (score 1-100)">
+        <div class="col-md-2">
+          <input class="new-todo" placeholder="Estimate it?">
         </div>
+        <div class="col-md-2">
+          <input class="new-todo" placeholder="Value points?">
+        </div>
+        <div class="col-md-2">
+          <input class="new-todo" placeholder="(Optional)">
+        </div>
+        <div class="col-md-2">
+          <input class="new-todo" placeholder="(Optional)">
+        </div>
+
       </div>
   </header>
   <section id="main" ng-show="todos.length" ng-cloak>
