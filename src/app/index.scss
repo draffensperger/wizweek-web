@@ -12,6 +12,19 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
+body {
+	font: 14px Georgia, Times, Times New Roman, serif;
+	line-height: 1.4em;
+  background: #f5f5f5;
+  color: #4d4d4d;
+}
+
+.wizweek-brand {
+  font-size: 120%;
+  font-style: italic;
+  color: #337ab7;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -39,17 +52,33 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   padding-top: 4em;
 }
 
-a.nav.navbar-brand {
-  &:hover, &:active, &:focus {
-    color: #5AADBB;
-  }
-}
-a.nav.navbar-brand:focus {
-  /*color: green;*/
-}
+/*.navbar {*/
+  /*background: #fcfcfc;*/
+/*}*/
 
-footer {
-  background: white
+/*.navbar-nav li {*/
+  /*background: #red;*/
+  /*&:focus, &:active, &:hover {*/
+    /*background: red;*/
+  /*}*/
+  /*.active {*/
+    /*background: black;*/
+  /*}*/
+/*}*/
+
+/*a.nav.navbar-brand {*/
+  /*&:hover, &:active, &:focus {*/
+    /*color: #5AADBB;*/
+  /*}*/
+/*}*/
+/*a.nav.navbar-brand:focus {*/
+  /*[>color: green;<]*/
+/*}*/
+
+footer.page-footer {
+  color: #99979c;
+  padding-top: 1em;
+  background: #2a2730;
 }
 
 #toast-container .toast {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,15 +7,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="nav navbar-brand" ui-sref="home">WizWeek</a>
+      <a class="nav navbar-brand" ui-sref="home">
+        <div class="wizweek-brand">WizWeek</div>
+      </a>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav" ng-show="navbar.auth.signedIn">
-        <li ng-class="{ active: navbar.isActive('home')}">
+        <li ng-class="{ active: navbar.isActive('main.authorized.dashboard')}">
           <a ui-sref="main.authorized.dashboard">Tasks</a>
         </li>
-        <li ng-class="{ active: navbar.isActive('settings')}">
+        <li ng-class="{ active: navbar.isActive('main.authorized.settings')}">
           <a ui-sref="main.authorized.settings">Settings</a>
         </li>
       </ul>

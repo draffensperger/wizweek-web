@@ -15,6 +15,7 @@
     vm.auth = auth;
     vm.lastSignIn = lastSignIn;
     vm.isActive = isActive;
+    vm.state = $state;
 
     function isActive(state) {
       return $state.current.name == state;
