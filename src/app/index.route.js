@@ -23,7 +23,7 @@
     .state('main.authorized.dashboard', {
       url: '/',
       templateUrl: 'app/dashboard/dashboard.html',
-      controller: 'TodoCtrl',
+      controller: 'TodoController',
       controllerAs: 'dash'
     })
     .state('main.authorized.settings', {

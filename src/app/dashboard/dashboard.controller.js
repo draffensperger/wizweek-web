@@ -4,7 +4,7 @@
  * - exposes the model to the template and provides event handlers
  */
 angular.module('wizweekPy')
-	.controller('TodoCtrl', function TodoCtrl($filter, store) {
+	.controller('TodoController', function TodoController($filter, store) {
 		'use strict';
 
     var vm = this;
@@ -29,7 +29,7 @@ angular.module('wizweekPy')
     vm.newTodo = angular.extend({}, blankNewTodo);
 		vm.editedTodo = null;
 
-		vm.addTodo = function () {
+		vm.addTodo = function() {
 			var newTodo = {
 				title: vm.newTodo.title.trim(),
         hours: vm.newTodo.hours,
@@ -46,7 +46,7 @@ angular.module('wizweekPy')
 			vm.saving = true;
 			store.insert(newTodo)
 				.then(function success() {
-					vm.newTodo = angular.extend({}, blankNewTodo);;
+					vm.newTodo = angular.extend({}, blankNewTodo);
 				})
 				.finally(function () {
 					vm.saving = false;
