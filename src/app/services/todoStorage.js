@@ -10,18 +10,21 @@
 angular.module('wizweekPy')
 	.factory('store', function ($http, $injector) {
 		'use strict';
-    return $injector.get('localStorage');
+    return $injector.get('todoApi');
 	})
 
-	.factory('api', function ($resource) {
+	.factory('todoApi', function ($resource, auth, apiBaseUrl) {
 		'use strict';
 
 		var store = {
 			todos: [],
 
-			api: $resource('/api/todos/:id', null,
+			api: $resource(apiBaseUrl + 'todos/:id', null,
 				{
-					update: { method:'PUT' }
+          query: { headers: { 'Authorization': 'Bearer ' + auth } },
+          delete: { headers: { 'Authorization': 'Bearer ' + auth } },
+          save: { headers: { 'Authorization': 'Bearer ' + auth } },
+          update: { method:'PUT', headers: { 'Authorization': 'Bearer ' + auth } }
 				}
 			),
 
