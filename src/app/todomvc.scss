@@ -179,11 +179,18 @@ label[for='toggle-all'] {
 #todo-list li label {
 	white-space: pre-line;
 	word-break: break-all;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
+	padding: 15px 0 15px 15px;
+}
+
+#todo-list .first-label {
+	margin-left: 45px;
+}
+
+.right-align {
+  text-align: right;
 }
 
 #todo-list li.completed label {

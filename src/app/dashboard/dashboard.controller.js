@@ -11,7 +11,12 @@ angular.module('wizweekPy')
 		var todos = $scope.todos = store.todos;
 
     var blankNewTodo = {
-      title: '', hours: null, value: null, deadline: null, minStart: null
+      title: '', hours: null, value: null, deadline: new Date(), minStart: null
+    }
+
+    $scope.deadlinePopupOpen = false;
+    $scope.deadlineFocused = function() {
+      $scope.deadlinePopupOpen = true;
     }
 
     $scope.newTodo = angular.extend({}, blankNewTodo);
@@ -34,6 +39,8 @@ angular.module('wizweekPy')
 		$scope.addTodo = function () {
 			var newTodo = {
 				title: $scope.newTodo.title.trim(),
+        hours: $scope.newTodo.hours,
+        value: $scope.newTodo.value,
 				completed: false
 			};
 
