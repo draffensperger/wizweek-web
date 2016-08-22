@@ -7,87 +7,104 @@ Welcome {{dash.auth.userName}}!
 This page will soon display a list of tasks.
 <br/><br/>
 
-<section id="todoapp">
-  <header id="header">
-    <div class="row todo-headers">
-      <div class="first-todo-header col-md-5">Task</div>
-      <div class="col-md-1 right-align">Duration</div>
-      <div class="col-md-1 right-align">Value</div>
-      <div class="col-md-2">Deadline</div>
-      <div class="col-md-2">Min start</div>
+<div id="todoapp" class="todo-table" style="width: 100%">
+  <div class="todo-row todo-headers">
+    <div class="todo-cell" style="width: 10%"></div>
+    <div class="todo-cell" style="width: 40%">Task</div>
+    <div class="todo-cell" style="width: 10%">Duration</div>
+    <div class="todo-cell" style="width: 10%">Value</div>
+    <div class="todo-cell" style="width: 10%">Deadline</div>
+    <div class="todo-cell" style="width: 10%">Min start</div>
+    <div class="todo-cell" style="width: 10%"></div>
+  </div>
+
+  <form id="todo-form" class="todo-row" ng-submit="addTodo()">
+    <div class="todo-cell">
+      <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+    </div>
+    <div class="todo-cell">
+      <input id="title" class="new-todo first-field" placeholder="Project or task name?"
+      ng-model="newTodo.title" ng-disabled="saving" autofocus>
+    </div>
+    <div class="todo-cell">
+      <input class="new-todo right-align" placeholder="Hours"
+      ng-model="newTodo.hours" ng-disabled="saving">
+    </div>
+    <div class="todo-cell">
+      <input class="new-todo right-align" placeholder="Points"
+      ng-model="newTodo.value" ng-disabled="saving">
+    </div>
+    <div class="todo-cell">
+      <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
+      ng-model="newTodo.deadline" close-text="Close" is-open="deadlinePopupOpen"
+      on-open-focus="false" placeholder="(Optional)" ng-focus="deadlineFocused()" />
+    </div>
+    <div class="todo-cell">
+      <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
+      ng-model="newTodo.minStart" close-text="Close" is-open="minStartPopupOpen"
+      on-open-focus="false" placeholder="(Optional)" ng-focus="minStartFocused()" />
+    </div>
+    <div class="todo-cell">
+      <input class="todo-save-btn btn btn-default" type="submit" class="btn btn-success" value="Save">
+    </div>
+  </form>
+
+  <div class="todo-row" ng-repeat="todo in todos track by $index" 
+    ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+
+    <div class="todo-cell">
     </div>
 
-    <form id="todo-form" ng-submit="addTodo()">
-      <div class="row">
-        <div class="col-md-5">
-          <input id="title" class="new-todo first-field" placeholder="Project or task name?"
-           ng-model="newTodo.title" ng-disabled="saving" autofocus>
-        </div>
-        <div class="col-md-1">
-          <input class="new-todo right-align" placeholder="Hours"
-          ng-model="newTodo.hours" ng-disabled="saving">
-        </div>
-        <div class="col-md-1">
-          <input class="new-todo right-align" placeholder="Points"
-          ng-model="newTodo.value" ng-disabled="saving">
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
-            ng-model="newTodo.deadline" close-text="Close" is-open="deadlinePopupOpen"
-            on-open-focus="false" placeholder="(Optional)" ng-focus="deadlineFocused()" />
-        </div>
-        <div class="col-md-2">
-          <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
-            ng-model="newTodo.minStart" close-text="Close" is-open="minStartPopupOpen"
-            on-open-focus="false" placeholder="(Optional)" ng-focus="minStartFocused()" />
-        </div>
-        <div class="col-md-1">
-          <input class="todo-save-btn btn btn-default" type="submit" class="btn btn-success" value="Save">
-        </div>
-      </div>
-    </form>
+    <div class="todo-cell">
+      <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+      <label class="first-label" ng-click="editTodo(todo)">{{todo.title}}</label>
+    </div>
 
-  </header>
-  <section id="main" ng-show="todos.length" ng-cloak>
-    <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-    <ul id="todo-list">
-      <li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+    <div class="todo-cell">{{todo.hours}}</div>
+    <div class="todo-cell">{{todo.value}}</div>
+    <div class="todo-cell">{{todo.deadline | date:'shortDate'}}</div>
+    <div class="todo-cell">{{todo.minStart | date:'shortDate'}}</div>
 
-        <div class="view">
-          <div class="row">
-            <div class="col-md-5">
-              <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
-              <label class="first-label" ng-click="editTodo(todo)">{{todo.title}}</label>
-            </div>
-            <div class="col-md-1">
-              <label class="right-align" ng-click="editTodo(todo)">{{todo.hours}}h</label>
-            </div>
-            <div class="col-md-1">
-              <label class="right-align" ng-click="editTodo(todo)">{{todo.value}}p</label>
-            </div>
-            <div class="col-md-2">
-              <label ng-click="editTodo(todo)">{{todo.deadline | date:'shortDate'}}</label>
-            </div>
-            <div class="col-md-2">
-              <label ng-click="editTodo(todo)">{{todo.minStart | date:'shortDate'}}</label>
-            </div>
+  </div>
+</div>
 
-            <button class="destroy" ng-click="removeTodo(todo)"></button>
-          </div>
-        </div>
+<!--<section id="main" ng-show="todos.length" ng-cloak>-->
+  <!--<ul id="todo-list">-->
+    <!--<li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">-->
+      <!--<div class="view">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-5">-->
+            <!--<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">-->
+            <!--<label class="first-label" ng-click="editTodo(todo)">{{todo.title}}</label>-->
+          <!--</div>-->
+          <!--<div class="col-md-1">-->
+            <!--<label class="right-align" ng-click="editTodo(todo)">{{todo.hours}}h</label>-->
+          <!--</div>-->
+          <!--<div class="col-md-1">-->
+            <!--<label class="right-align" ng-click="editTodo(todo)">{{todo.value}}p</label>-->
+          <!--</div>-->
+          <!--<div class="col-md-2">-->
+            <!--<label ng-click="editTodo(todo)">{{todo.deadline | date:'shortDate'}}</label>-->
+          <!--</div>-->
+          <!--<div class="col-md-2">-->
+            <!--<label ng-click="editTodo(todo)">{{todo.minStart | date:'shortDate'}}</label>-->
+          <!--</div>-->
 
-        <form ng-submit="saveEdits(todo, 'submit')">
-          <div class="row">
-            <div class="col-md-5">
-              <input class="edit first-field" ng-trim="false" ng-model="todo.title"
-              todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')"
-              todo-focus="todo == editedTodo">
-            </div>
-          </div>
-        </form>
+          <!--<button class="destroy" ng-click="removeTodo(todo)"></button>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<form ng-submit="saveEdits(todo, 'submit')">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-5">-->
+            <!--<input class="edit first-field" ng-trim="false" ng-model="todo.title"-->
+            <!--todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')"-->
+            <!--todo-focus="todo == editedTodo">-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</form>-->
 
 
-      </li>
-    </ul>
-  </section>
-</section>
+    <!--</li>-->
+  <!--</ul>-->
+<!--</section>-->
