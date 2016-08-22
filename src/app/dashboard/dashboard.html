@@ -32,15 +32,14 @@ This page will soon display a list of tasks.
           ng-model="newTodo.value" ng-disabled="saving">
         </div>
         <div class="col-md-2">
-          <input type="text" class="new-todo"
-          uib-datepicker-popup="shortDate" 
-          ng-model="newTodo.deadline" close-text="Close" is-open="deadlinePopupOpen"
-          on-open-focus="false"
-          ng-focus="deadlineFocused()" ng-blur="deadlineBlurred()" />
+          <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
+            ng-model="newTodo.deadline" close-text="Close" is-open="deadlinePopupOpen"
+            on-open-focus="false" placeholder="(Optional)" ng-focus="deadlineFocused()" />
         </div>
         <div class="col-md-2">
-          <input class="new-todo" placeholder="(Optional)"
-          ng-model="newTodo.minStart" ng-disabled="saving">
+          <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
+            ng-model="newTodo.minStart" close-text="Close" is-open="minStartPopupOpen"
+            on-open-focus="false" placeholder="(Optional)" ng-focus="minStartFocused()" />
         </div>
         <div class="col-md-1">
           <input class="todo-save-btn btn btn-default" type="submit" class="btn btn-success" value="Save">
@@ -65,7 +64,12 @@ This page will soon display a list of tasks.
             <div class="col-md-1">
               <label class="right-align" ng-click="editTodo(todo)">{{todo.value}}p</label>
             </div>
-
+            <div class="col-md-2">
+              <label ng-click="editTodo(todo)">{{todo.deadline | date:'shortDate'}}</label>
+            </div>
+            <div class="col-md-2">
+              <label ng-click="editTodo(todo)">{{todo.minStart | date:'shortDate'}}</label>
+            </div>
 
             <button class="destroy" ng-click="removeTodo(todo)"></button>
           </div>
