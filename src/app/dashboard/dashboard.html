@@ -22,29 +22,29 @@ calendar as you configured them in the settings.
       <div class="col-md-2">Min start</div>
     </div>
 
-    <form id="todo-form" ng-submit="addTodo()">
+    <form id="todo-form" ng-submit="dash.addTodo()">
       <div class="row">
         <div class="col-md-5">
           <input id="title" class="new-todo first-field" placeholder="Project or task name?"
-           ng-model="newTodo.title" ng-disabled="saving" autofocus>
+           ng-model="dash.newTodo.title" ng-disabled="saving" autofocus>
         </div>
         <div class="col-md-1">
           <input class="new-todo right-align" placeholder="Hours"
-          ng-model="newTodo.hours" ng-disabled="saving">
+          ng-model="dash.newTodo.hours" ng-disabled="saving">
         </div>
         <div class="col-md-1">
           <input class="new-todo right-align" placeholder="Points"
-          ng-model="newTodo.value" ng-disabled="saving">
+          ng-model="dash.newTodo.value" ng-disabled="saving">
         </div>
         <div class="col-md-2">
           <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
-            ng-model="newTodo.deadline" close-text="Close" is-open="deadlinePopupOpen"
-            on-open-focus="false" placeholder="(Optional)" ng-focus="deadlineFocused()" />
+            ng-model="dash.newTodo.deadline" close-text="Close" is-open="dash.deadlinePopupOpen"
+            on-open-focus="false" placeholder="(Optional)" ng-focus="dash.deadlineFocused()" />
         </div>
         <div class="col-md-2">
           <input type="text" class="new-todo" uib-datepicker-popup="shortDate" 
-            ng-model="newTodo.minStart" close-text="Close" is-open="minStartPopupOpen"
-            on-open-focus="false" placeholder="(Optional)" ng-focus="minStartFocused()" />
+            ng-model="dash.newTodo.minStart" close-text="Close" is-open="dash.minStartPopupOpen"
+            on-open-focus="false" placeholder="(Optional)" ng-focus="dash.minStartFocused()" />
         </div>
         <div class="col-md-1">
           <input class="todo-save-btn btn btn-default" type="submit" class="btn btn-success" value="Save">
@@ -53,40 +53,40 @@ calendar as you configured them in the settings.
     </form>
 
   </header>
-  <section id="main" ng-show="todos.length" ng-cloak>
-    <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+  <section id="main" ng-show="dash.todos.length" ng-cloak>
+    <input id="toggle-all" type="checkbox" ng-model="dash.allChecked" ng-click="dash.markAll(allChecked)">
     <ul id="todo-list">
-      <li ng-repeat="todo in todos track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+      <li ng-repeat="todo in dash.todos track by $index" ng-class="{completed: todo.completed, editing: todo == dash.editedTodo}">
 
         <div class="view">
           <div class="row">
             <div class="col-md-5">
-              <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
-              <label class="first-label" ng-click="editTodo(todo)">{{todo.title}}</label>
+              <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="dash.toggleCompleted(todo)">
+              <label class="first-label" ng-click="dash.editTodo(todo)">{{todo.title}}</label>
             </div>
             <div class="col-md-1">
-              <label class="right-align" ng-click="editTodo(todo)">{{todo.hours}}h</label>
+              <label class="right-align" ng-click="dash.editTodo(todo)">{{todo.hours}}h</label>
             </div>
             <div class="col-md-1">
-              <label class="right-align" ng-click="editTodo(todo)">{{todo.value}}p</label>
+              <label class="right-align" ng-click="dash.editTodo(todo)">{{todo.value}}p</label>
             </div>
             <div class="col-md-2">
-              <label ng-click="editTodo(todo)">{{todo.deadline | date:'shortDate'}}</label>
+              <label ng-click="dash.editTodo(todo)">{{todo.deadline | date:'shortDate'}}</label>
             </div>
             <div class="col-md-2">
-              <label ng-click="editTodo(todo)">{{todo.minStart | date:'shortDate'}}</label>
+              <label ng-click="dash.editTodo(todo)">{{todo.minStart | date:'shortDate'}}</label>
             </div>
 
-            <button class="destroy" ng-click="removeTodo(todo)"></button>
+            <button class="destroy" ng-click="dash.removeTodo(todo)"></button>
           </div>
         </div>
 
-        <form ng-submit="saveEdits(todo, 'submit')">
+        <form ng-submit="dash.saveEdits(todo, 'submit')">
           <div class="row">
             <div class="col-md-5">
               <input class="edit first-field" ng-trim="false" ng-model="todo.title"
-              todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')"
-              todo-focus="todo == editedTodo">
+              todo-escape="dash.revertEdits(todo)" ng-blur="dash.saveEdits(todo, 'blur')"
+              todo-focus="todo == dash.editedTodo">
             </div>
           </div>
         </form>
