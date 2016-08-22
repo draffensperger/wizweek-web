@@ -46,6 +46,7 @@ This page will soon display a list of tasks.
         </div>
       </div>
     </form>
+
   </header>
   <section id="main" ng-show="todos.length" ng-cloak>
     <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
@@ -76,8 +77,13 @@ This page will soon display a list of tasks.
         </div>
 
         <form ng-submit="saveEdits(todo, 'submit')">
-          <input class="edit" ng-trim="false" ng-model="todo.title" todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')"
-            todo-focus="todo == editedTodo">
+          <div class="row">
+            <div class="col-md-5">
+              <input class="edit first-field" ng-trim="false" ng-model="todo.title"
+              todo-escape="revertEdits(todo)" ng-blur="saveEdits(todo, 'blur')"
+              todo-focus="todo == editedTodo">
+            </div>
+          </div>
         </form>
 
 
