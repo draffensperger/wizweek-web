@@ -51,7 +51,7 @@ angular.module('wizweekPy')
 				completed: false
 			};
 
-			if (!newTodo.title) {
+			if (!newTodo.title || !newTodo.hours || !newTodo.value) {
 				return;
 			}
 
