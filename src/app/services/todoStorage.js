@@ -19,12 +19,24 @@ angular.module('wizweekPy')
 		var store = {
 			todos: [],
 
-			api: $resource(apiBaseUrl + 'todos/:id', null,
+			api: $resource(apiBaseUrl + 'tasks/:id', null,
 				{
-          query: { headers: { 'Authorization': 'Bearer ' + auth } },
-          delete: { headers: { 'Authorization': 'Bearer ' + auth } },
-          save: { headers: { 'Authorization': 'Bearer ' + auth } },
-          update: { method:'PUT', headers: { 'Authorization': 'Bearer ' + auth } }
+          query: {
+            headers: { 'Authorization': 'Bearer ' + auth.token },
+            isArray: true
+          },
+          delete: {
+            method: 'DELETE',
+            headers: { 'Authorization': 'Bearer ' + auth.token }
+          },
+          save: {
+            method:'POST',
+            headers: { 'Authorization': 'Bearer ' + auth.token }
+          },
+          update: {
+            method:'PUT',
+            headers: { 'Authorization': 'Bearer ' + auth.token }
+          }
 				}
 			),
 
