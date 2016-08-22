@@ -11,31 +11,39 @@ This page will soon display a list of tasks.
   <header id="header">
     <div class="row todo-headers">
       <div class="first-todo-header col-md-4">Task</div>
-      <div class="col-md-2">Hours</div>
+      <div class="col-md-1">Duration</div>
       <div class="col-md-2">Business value</div>
       <div class="col-md-2">Deadline</div>
-      <div class="col-md-2">Min start date</div>
+      <div class="col-md-2">Min start</div>
     </div>
 
     <form id="todo-form" ng-submit="addTodo()">
       <div class="row">
         <div class="col-md-4">
-          <input class="new-todo first-field" placeholder="Project/task name?" ng-model="newTodo" ng-disabled="saving" autofocus>
+          <input id="title" class="new-todo first-field" placeholder="Project or task name?"
+           ng-model="newTodo.title" ng-disabled="saving" autofocus>
+        </div>
+        <div class="col-md-1">
+          <input class="new-todo" placeholder="Hours"
+          ng-model="newTodo.hours" ng-disabled="saving">
         </div>
         <div class="col-md-2">
-          <input class="new-todo" placeholder="Estimate it?">
+          <input class="new-todo" placeholder="Value points?"
+          ng-model="newTodo.value" ng-disabled="saving">
         </div>
         <div class="col-md-2">
-          <input class="new-todo" placeholder="Value points?">
+          <input class="new-todo" placeholder="(Optional)"
+          ng-model="newTodo.deadline" ng-disabled="saving">
         </div>
         <div class="col-md-2">
-          <input class="new-todo" placeholder="(Optional)">
+          <input class="new-todo" placeholder="(Optional)"
+          ng-model="newTodo.minStart" ng-disabled="saving">
         </div>
-        <div class="col-md-2">
-          <input class="new-todo" placeholder="(Optional)">
+        <div>
+          <input class="todo-save-btn btn btn-default" type="submit" class="btn btn-success" value="Save">
         </div>
-
       </div>
+    </form>
   </header>
   <section id="main" ng-show="todos.length" ng-cloak>
     <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">

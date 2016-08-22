@@ -10,7 +10,11 @@ angular.module('wizweekPy')
     store.get();
 		var todos = $scope.todos = store.todos;
 
-		$scope.newTodo = '';
+    var blankNewTodo = {
+      title: '', hours: null, value: null, deadline: null, minStart: null
+    }
+
+    $scope.newTodo = angular.extend({}, blankNewTodo);
 		$scope.editedTodo = null;
 
 		$scope.$watch('todos', function () {
@@ -29,7 +33,7 @@ angular.module('wizweekPy')
 
 		$scope.addTodo = function () {
 			var newTodo = {
-				title: $scope.newTodo.trim(),
+				title: $scope.newTodo.title.trim(),
 				completed: false
 			};
 
@@ -40,7 +44,7 @@ angular.module('wizweekPy')
 			$scope.saving = true;
 			store.insert(newTodo)
 				.then(function success() {
-					$scope.newTodo = '';
+					$scope.newTodo = angular.extend({}, blankNewTodo);;
 				})
 				.finally(function () {
 					$scope.saving = false;

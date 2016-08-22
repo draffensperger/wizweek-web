@@ -1,7 +1,6 @@
 .todo-headers {
   padding-top: 1em;
   font-weight: bold;
-  font-size: 115%;
 }
 .first-todo-header {
   padding-left: 75px;
@@ -56,7 +55,7 @@
 	position: relative;
 	margin: 0;
 	width: 100%;
-	font-size: 1.3em;
+	font-size: 1.1em;
 	line-height: 1.4em;
 	border: 0;
 	outline: none;
@@ -79,6 +78,14 @@
 
 .new-todo.first-field {
   padding-left: 60px;
+}
+
+.todo-save-btn {
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 105%;
+  left: -10px;
+  position: relative;
 }
 
 #main {
@@ -124,7 +131,7 @@ label[for='toggle-all'] {
 
 #todo-list li {
 	position: relative;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	border-bottom: 1px solid #ededed;
 }
 
