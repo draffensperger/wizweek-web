@@ -20,6 +20,7 @@
     }
 
     function load(defaultSettings) {
+      defaultSettings = defaultSettings || {};
       if (settings) {
         // If we've already loaded the settings once, just give that.
         return $q.resolve(settings);

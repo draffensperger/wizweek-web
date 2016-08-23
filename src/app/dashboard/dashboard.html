@@ -8,7 +8,11 @@ automatically synced to your tasks calendar and schedule around your appointment
 calendar as you configured them in the settings.
 <br/><br/>
 
-<button class="btn btn-success btn-lg">Optimize my schedule!</button>
+<div>
+  <button class="btn btn-success btn-lg" ng-click="dash.optimize()"
+    ng-disabled="dash.optimizing">Optimize my schedule!</button>
+  <div class="optimize-message">{{dash.optimizeMessage}}</div>
+</div>
 
 <br/><br/>
 
