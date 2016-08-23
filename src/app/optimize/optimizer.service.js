@@ -27,7 +27,6 @@
         msgCallback('Loading settings...');
         settingsStore.load().then(function(loadedSettings) {
           settings = loadedSettings;
-          console.log(GApi);
           loadEvents();
         });
       }
@@ -43,32 +42,34 @@
         var calUrl = 'calendar/v3/calendars/' + settings.appointmentsCalId + '/events';
         var url = calUrl + "?timeMin=" + startTaskSchedule.toISOString() +
           "&timeMax=" + endTaskSchedule.toISOString();
-        GApi.request(url).then(function(resp) {
-          var events = resp.result.items;
-          var nonAllDayEvents = [];
+        GApi.request(url).then(function() {
+          // resp is first parameter
+          //var events = resp.result.items;
+          //var nonAllDayEvents = [];
           // Exclude events that have a start: { date in them }
         });
 
         msgCallback('Loading appointments...');
       }
 
-      function appointments(calendar, start, end) {
-        var appts = [];
-        var apptEvents = calendar.getEvents(start, end);
-        for (var i = 0; i < apptEvents.length; i++) {
-          apptEvent = apptEvents[i];
-          if (!apptEvent.isAllDayEvent()) {
-            appt = {
-              title: apptEvent.getTitle(),
-              start: apptEvent.getStartTime(),
-              end: apptEvent.getEndTime()
-            };
-            appts.push(appt);
-          }
-        }
-        logTime("appointments");
-        return appts;
-      }
+      // function appointments(calendar, start, end) {
+      //   var appts = [];
+      //   var apptEvents = calendar.getEvents(start, end);
+      //   for (var i = 0; i < apptEvents.length; i++) {
+      //     apptEvent = apptEvents[i];
+      //     if (!apptEvent.isAllDayEvent()) {
+      //       appt = {
+      //         title: apptEvent.getTitle(),
+      //         start: apptEvent.getStartTime(),
+      //         end: apptEvent.getEndTime()
+      //       };
+      //       appts.push(appt);
+      //     }
+      //   }
+      //   logTime("appointments");
+      //   return appts;
+      // }
+      //
     }
   }
 
