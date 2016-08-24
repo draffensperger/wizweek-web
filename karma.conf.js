@@ -36,6 +36,7 @@ function listFiles() {
     served: true,
     watched: false
   });
+  files.unshift('src/specHelper.js');
   return files;
 }
 
@@ -44,7 +45,7 @@ module.exports = function(config) {
   var configuration = {
     files: listFiles(),
 
-    singleRun: true,
+    singleRun: false,
 
     autoWatch: false,
 

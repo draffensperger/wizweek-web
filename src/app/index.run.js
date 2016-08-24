@@ -6,10 +6,10 @@
   .run(runBlock);
 
   /** @ngInject */
-  function runBlock(auth, api) {
+  function runBlock(auth, apiPing) {
     auth.checkAuth();
 
     // Just ping the API to wake it up (it runs on a free Heroku dyno)
-    api.get('/');
+    apiPing.ping();
   }
 })();
