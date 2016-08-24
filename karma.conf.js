@@ -45,7 +45,7 @@ module.exports = function(config) {
   var configuration = {
     files: listFiles(),
 
-    singleRun: false,
+    singleRun: true,
 
     autoWatch: false,
 
