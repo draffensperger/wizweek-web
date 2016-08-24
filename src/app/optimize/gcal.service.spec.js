@@ -11,7 +11,7 @@ describe('gcal', function() {
     $rootScope = _$rootScope_;
   }));
 
-  it('retrieves a list of events', function() {
+  fit('retrieves a list of events', function() {
     spyOn(GApi, 'request').and.returnValue(
       $q.resolve({
         result: { items: [{ summary: 'event!' }] }
@@ -25,5 +25,8 @@ describe('gcal', function() {
       expect(events).toEqual([{ summary: 'event!' }]);
     });
     $rootScope.$digest();
+    var expectedUrl = 'calendar/v3/calendars/cal1/events?' +
+      'timeMin=2016-09-10T04:00:00.000Z&timeMax=2016-09-22T04:00:00.000Z';
+    expect(GApi.request).toHaveBeenCalledWith(expectedUrl);
   });
 });
