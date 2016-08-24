@@ -11,7 +11,7 @@ describe('gcal', function() {
     $rootScope = _$rootScope_;
   }));
 
-  fit('retrieves a list of events', function() {
+  it('retrieves a list of events', function() {
     spyOn(GApi, 'request').and.returnValue(
       $q.resolve({
         result: { items: [{ summary: 'event!' }] }
@@ -28,5 +28,22 @@ describe('gcal', function() {
     var expectedUrl = 'calendar/v3/calendars/cal1/events?' +
       'timeMin=2016-09-10T04:00:00.000Z&timeMax=2016-09-22T04:00:00.000Z';
     expect(GApi.request).toHaveBeenCalledWith(expectedUrl);
+  });
+
+  it('can reject all day events', function() {
+    var partDayEvent = {
+      summary: 'e1',
+      start: { dateTime: '2016-09-22T02:00:00.000Z' },
+      end: { dateTime: '2016-09-22T04:00:00.000Z' }
+    };
+    var allDayEvent = {
+      summary: 'e1',
+      start: { date: '2016-09-22' },
+      end: { date: '2016-09-22' }
+    };
+
+    var events = [partDayEvent, allDayEvent];
+
+    expect(gcal.rejectAllDayEvents(events)).toEqual([partDayEvent]);
   });
 });

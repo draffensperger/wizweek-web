@@ -7,7 +7,8 @@
 
   function gcal(GApi) {
     var service = {
-      events: events
+      events: events,
+      rejectAllDayEvents: rejectAllDayEvents
     };
     return service;
 
@@ -23,6 +24,14 @@
 
     function calUrl(calId) {
       return 'calendar/v3/calendars/' + calId;
+    }
+
+    function rejectAllDayEvents(events) {
+      return events.filter(isNotAllDayEvent, events);
+    }
+
+    function isNotAllDayEvent(event) {
+      return event['start']['dateTime'];
     }
   }
 })();

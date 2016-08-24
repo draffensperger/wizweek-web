@@ -37,8 +37,6 @@
       }
 
       function loadAppointments() {
-        //GET https://www.googleapis.com/calendar/v3/calendars/calendarId/events
-        // timeMax, timeMin
         var calUrl = 'calendar/v3/calendars/' + settings.appointmentsCalId + '/events';
         var url = calUrl + "?timeMin=" + startTaskSchedule.toISOString() +
           "&timeMax=" + endTaskSchedule.toISOString();
