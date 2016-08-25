@@ -27,7 +27,9 @@
 
     function isLikelyActive() {
       // Coerce the truthy/falsey value of signedInBefore to actual true/false
-      return $window.localStorage.signedInBefore ? true : false;
+      var result =  $window.localStorage.signedInBefore ? true : false;
+      console.log(result);
+      return result;
     }
   }
 })();

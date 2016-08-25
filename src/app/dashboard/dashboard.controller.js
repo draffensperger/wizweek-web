@@ -11,10 +11,17 @@
   .controller('TodoController', TodoController);
 
   /** @ngInject */
-  function TodoController($filter, todoApi, optimizeAndSync) {
+  function TodoController($filter, todoApi, optimizeAndSync, settingsStore, $timeout) {
 		'use strict';
 
     var vm = this;
+
+    vm.settings = {};
+    vm.settingsLoading = true;
+    settingsStore.load().then(function(loadedSettings) {
+      vm.settings = loadedSettings;
+      vm.settingsLoading = false;
+    })
 
     todoApi.get();
 		var todos = vm.todos = todoApi.todos;
@@ -26,10 +33,11 @@
     vm.optimizing = false;
     vm.optimizeMessage = '';
     vm.optimize = function() {
+      vm.optimizing = true;
       optimizeAndSync.exec(vm.todos, function(message) {
         vm.optimizeMessage = message;
       }, function() {
-        vm.optimizing = false;
+        $timeout(function() { vm.optimizing = false; }, 100);
       });
     };
 

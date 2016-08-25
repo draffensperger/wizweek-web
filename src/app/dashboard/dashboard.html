@@ -10,8 +10,14 @@ calendar as you configured them in the settings.
 
 <div>
   <button class="btn btn-success btn-lg" ng-click="dash.optimize()"
-    ng-disabled="dash.optimizing">Optimize my schedule!</button>
+    ng-disabled="!dash.settings.tasksCalId || !dash.settings.appointmentsCalId || dash.optimizing"
+  >Optimize my schedule!</button>
   <div class="optimize-message">{{dash.optimizeMessage}}</div>
+</div>
+<div ng-show="!dash.settingsLoading && (!dash.settings.tasksCalId || !dash.settings.appointmentsCalId)">
+  Before you can have WizWeek create an optimized schedule for these tasks, go
+  to the <a ui-sref="main.authorized.settings">settings</a> to specify your
+  appointments and tasks calendars and optionally customize your schedule.
 </div>
 
 <br/><br/>
