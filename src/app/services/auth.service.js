@@ -52,7 +52,13 @@
     }
 
     function signOut() {
-      GAuth.signOut();
+      GAuth.signOut().then(function() {
+        service.userEmail = null;
+        service.userName = null;
+        service.token = null;
+        service.signedIn = false;
+        lastSignIn.signedOut();
+      });
     }
   }
 })();

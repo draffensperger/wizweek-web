@@ -10,16 +10,6 @@
     var vm = this;
     vm.calendars = [];
     vm.weekDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var defaultSettings = {
-      appointmentsCalId: null, tasksCalId: null,
-
-      // Default work times are 9am-5pm Mon-Fri and just an empty 9am-9am for
-      // Sun (first day of week) and Sat (last day of week).
-      workStartTimes: Array(7).fill(new Date(0, 0, 0, 9)),
-      workEndTimes: [new Date(0, 0, 0, 9)].concat(
-        Array(5).fill(new Date(0, 0, 0, 17))).concat(
-        [new Date(0, 0, 0, 9)])
-    }
 
     vm.settings = {};
     vm.saveSettings = saveSettings;
@@ -32,7 +22,7 @@
     }
 
     function loadSettings() {
-      settingsStore.load(defaultSettings).then(function(loadedSettings) {
+      settingsStore.load().then(function(loadedSettings) {
         vm.settings = loadedSettings;
       });
     }
