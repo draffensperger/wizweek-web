@@ -23,7 +23,14 @@
       vm.settingsLoading = false;
     })
 
-    todoApi.get();
+    todoApi.get().then(function(todos) {
+      todos.forEach(function(todo) {
+        if (todo.deadline) { todo.deadline = new Date(todo.deadline) };
+        if (todo.minStart) { todo.minStart = new Date(todo.minStart) };
+      });
+      vm.todos = todos;
+    });
+
 		var todos = vm.todos = todoApi.todos;
 
     var blankNewTodo = {

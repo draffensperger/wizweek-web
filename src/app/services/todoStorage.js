@@ -66,9 +66,7 @@
 			},
 
 			get: function () {
-				return store.api.query(function (resp) {
-					angular.copy(resp, store.todos);
-				});
+				return store.api.query().$promise;
 			},
 
 			insert: function (todo) {

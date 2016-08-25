@@ -30,14 +30,14 @@
     }
 
     function signIn() {
-      init().then(function(auth2) {
-        auth2.getAuthInstance().signIn();
+      return init().then(function(auth2) {
+        return auth2.getAuthInstance().signIn();
       });
     }
 
     function signOut() {
-      init().then(function(auth2) {
-        auth2.getAuthInstance().signOut();
+      return init().then(function(auth2) {
+        return auth2.getAuthInstance().signOut();
       });
     }
 
