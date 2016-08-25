@@ -7,15 +7,14 @@
  * They both follow the same API, returning promises for all changes to the
  * model.
  */
-angular.module('wizweekPy')
-	.factory('store', function ($http, $injector) {
-		'use strict';
-    return $injector.get('todoApi');
-	})
+(function() {
+  'use strict';
 
-	.factory('todoApi', function ($resource, auth, apiBaseUrl) {
-		'use strict';
+  angular.module('wizweekPy')
+	.factory('todoApi', todoApi);
 
+  /** @ngInject */
+  function todoApi($resource, auth, apiBaseUrl) {
 		var store = {
 			todos: [],
 
@@ -92,4 +91,6 @@ angular.module('wizweekPy')
 		};
 
 		return store;
-	})
+	}
+})();
+

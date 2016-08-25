@@ -15,21 +15,19 @@
     return service;
 
     function signedIn(expiresAt) {
-      $window.localStorage.signInExpiry = expiresAt;
+      // Because Google saves logins over time (and refreshes them), just assume
+      // for now that if we get a sign in, just ignore the expiresAt parameter.
+      // We may as well store it anyway but it's only used for its truthy value.
+      $window.localStorage.signedInBefore = expiresAt;
     }
 
     function signedOut() {
-      $window.localStorage.signInExpiry = 0;
+      $window.localStorage.signedInBefore = 0;
     }
 
     function isLikelyActive() {
-      var signInExpiry = $window.localStorage.signInExpiry;
-      if (!signInExpiry) {
-        return false;
-      } else {
-        var msLeft = parseInt(signInExpiry) - new Date().getTime();
-        return msLeft > 0;
-      }
+      // Coerce the truthy/falsey value of signedInBefore to actual true/false
+      return $window.localStorage.signedInBefore ? true : false;
     }
   }
 })();

@@ -3,14 +3,21 @@
  * - retrieves and persists the model via the todoStorage service
  * - exposes the model to the template and provides event handlers
  */
-angular.module('wizweekPy')
-	.controller('TodoController', function TodoController($filter, store, optimizeAndSync) {
+
+(function() {
+  'use strict';
+
+  angular.module('wizweekPy')
+  .controller('TodoController', TodoController);
+
+  /** @ngInject */
+  function TodoController($filter, todoApi, optimizeAndSync) {
 		'use strict';
 
     var vm = this;
 
-    store.get();
-		var todos = vm.todos = store.todos;
+    todoApi.get();
+		var todos = vm.todos = todoApi.todos;
 
     var blankNewTodo = {
       title: '', hours: null, value: null, deadline: null, minStart: null
@@ -54,7 +61,7 @@ angular.module('wizweekPy')
 			}
 
 			vm.saving = true;
-			store.insert(newTodo)
+			todoApi.insert(newTodo)
 				.then(function success() {
 					vm.newTodo = angular.extend({}, blankNewTodo);
 				})
@@ -87,7 +94,7 @@ angular.module('wizweekPy')
 
 			todo.title = todo.title.trim();
 
-			store[todo.title ? 'put' : 'delete'](todo)
+			todoApi[todo.title ? 'put' : 'delete'](todo)
 				.then(function success() {}, function error() {
 					todo.title = vm.originalTodo.title;
 				})
@@ -104,25 +111,25 @@ angular.module('wizweekPy')
 		};
 
 		vm.removeTodo = function (todo) {
-			store.delete(todo);
+			todoApi.delete(todo);
 		};
 
 		vm.saveTodo = function (todo) {
-			store.put(todo);
+			todoApi.put(todo);
 		};
 
 		vm.toggleCompleted = function (todo, completed) {
 			if (angular.isDefined(completed)) {
 				todo.completed = completed;
 			}
-			store.put(todo, todos.indexOf(todo))
+			todoApi.put(todo, todos.indexOf(todo))
 				.then(function success() {}, function error() {
 					todo.completed = !todo.completed;
 				});
 		};
 
 		vm.clearCompletedTodos = function () {
-			store.clearCompleted();
+			todoApi.clearCompleted();
 		};
 
 		vm.markAll = function (completed) {
@@ -132,4 +139,5 @@ angular.module('wizweekPy')
 				}
 			});
 		};
-	});
+	}
+})();
