@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-  .module('angular-gapi')
+  .module('wizweekPy')
   .service('GApi', GApi);
 
   /** @ngInject */

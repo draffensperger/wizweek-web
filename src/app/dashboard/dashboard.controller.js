@@ -87,11 +87,6 @@ angular.module('wizweekPy')
 
 			todo.title = todo.title.trim();
 
-			if (todo.title === vm.originalTodo.title) {
-				vm.editedTodo = null;
-				return;
-			}
-
 			store[todo.title ? 'put' : 'delete'](todo)
 				.then(function success() {}, function error() {
 					todo.title = vm.originalTodo.title;
