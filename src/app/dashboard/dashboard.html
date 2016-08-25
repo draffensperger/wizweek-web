@@ -89,8 +89,29 @@ calendar as you configured them in the settings.
           <div class="row">
             <div class="col-md-5">
               <input class="edit first-field" ng-trim="false" ng-model="todo.title"
-              todo-escape="dash.revertEdits(todo)" ng-blur="dash.saveEdits(todo, 'blur')"
+              todo-escape="dash.revertEdits(todo)"
               todo-focus="todo == dash.editedTodo">
+            </div>
+            <div class="col-md-1">
+              <input class="edit" placeholder="Hours"
+              todo-escape="dash.revertEdits(todo)"
+              ng-model="todo.hours">
+            </div>
+            <div class="col-md-1">
+              <input class="edit" placeholder="Points"
+              todo-escape="dash.revertEdits(todo)"
+              ng-model="todo.value">
+            </div>
+            <div class="col-md-2">
+              <input class="edit" uib-datepicker-popup="shortDate" 
+              ng-model="todo.deadline" close-text="Close" placeholder="(Optional)"/>
+            </div>
+            <div class="col-md-2">
+              <input class="edit" uib-datepicker-popup="shortDate" 
+              ng-model="todo.minStart" close-text="Close" placeholder="(Optional)"/>
+            </div>
+            <div class="col-md-1">
+              <input class="edit todo-save-btn btn btn-default" type="submit" value="Save">
             </div>
           </div>
         </form>
