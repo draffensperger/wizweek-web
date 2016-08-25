@@ -9,6 +9,7 @@
     var service = {
       calendarInfo: calendarInfo,
       events: events,
+      eventUpdatesBatch: eventUpdatesBatch,
       rejectAllDayEvents: rejectAllDayEvents
     };
     return service;
@@ -21,6 +22,9 @@
       return GApi.request(url).then(function(resp) {
         return resp.result.items;
       });
+    }
+
+    function eventUpdatesBatch(calId, eventUpdates) {
     }
 
     function calendarInfo(calId) {

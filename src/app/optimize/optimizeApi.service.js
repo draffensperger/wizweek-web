@@ -18,7 +18,9 @@
     }
 
     function optimize(request) {
-      return $http.post(optimizeUrl, request);
+      return $http.post(optimizeUrl, request).then(function(response) {
+        return response.data;
+      });
     }
   }
 })();
