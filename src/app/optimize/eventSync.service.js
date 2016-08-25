@@ -16,11 +16,7 @@
     // This is due to the fact that oldEvents comes from the Google calendar
     // api, whereas newTasks comes from the schedule optimizer service.
     function syncEvents(tasksCalId, oldEvents, newTasks) {
-      //PUT https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-      //DELETE https://www.googleapis.com/calendar/v3/calendars/calendarId/events/eventId
-      //debugger;
       var requests = [];
-
       for (var i = 0, len = newTasks.length; i < len; i++) {
         if (i < oldEvents.length) {
           if (!eventAndTaskMatch(oldEvents[i], newTasks[i])) {

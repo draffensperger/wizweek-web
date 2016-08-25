@@ -16,7 +16,6 @@
     this.batch = batch;
 
     function batch(requests) {
-      console.log(requests);
       if (requests.length == 0) {
         return $q.resolve();
       }
