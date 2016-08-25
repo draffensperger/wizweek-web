@@ -3,38 +3,43 @@
 </div>
 
 <div class="row">
-  <div class="col-md-5"><h4>Calendars</h4></div>
+  <div class="col-md-5"><h4 class="settings-sub-header">Calendars</h4></div>
 </div>
 
 <div class="row">
   <div class="col-md-5">
     <div class="form-group">
-      <label for="appointments-cal">Appointments calendar</label>
+      <label for="appointments-cal" class="settings-cal-label">Appointments calendar</label>
       <select id="appointments-cal" class="form-control"
         ng-options="cal.id as cal.summary for cal in $ctrl.calendars"
         ng-model="$ctrl.settings.appointmentsCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
       WizWeek will treat events on this calendar as fixed meetings and will schedule your project tasks around them.
+      <br/><br/>
+      If you have multiple calendars that contain appointments of yours, we 
+      recommend copying appointments from the other calendar to your main.
     </div>
   </div>
 
   <div class="col-md-5">
     <div class="form-group">
-      <label for="tasks-cal">Tasks calendar (will be overwritten)</label>
+      <label for="tasks-cal" class="settings-cal-label">Tasks calendar (will be overwritten)</label>
       <select id="tasks-cal" class="form-control"
         ng-options="cal.id as cal.summary for cal in $ctrl.calendars"
         ng-model="$ctrl.settings.tasksCalId" ng-change="$ctrl.saveSettings()"
         >
       </select>
-      WizWeek will <b>overwrite future events</b> on this calendar and replace them with automatically scheduled project work tasks.
+      WizWeek will <b>overwrite future events</b> on this calendar and replace them with automatically scheduled project work tasks.<br/><br/>
+      We recommend you create a new calendar for your scheduled tasks (and then
+      come back and refresh this page to select it).
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-5">
-    <h4>Work Schedule</h4>
+    <h4 class="settings-sub-header">Work Schedule</h4>
     WizWeek will schedule your project tasks within your work hours, except when you have an event in your appointments calendar. If you want to exclude a day from your
     work schedule, just set the start and end time to the same time (weekends are
     9am-9am by default).
