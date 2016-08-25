@@ -72,6 +72,7 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-coverage',
       'karma-jasmine',
+      'karma-jasmine-diff-reporter',
       'karma-ng-html2js-preprocessor'
     ],
 

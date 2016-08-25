@@ -3,8 +3,7 @@ describe('gcal', function() {
 
   specHelper.wizweekModBeforeEach();
 
-  beforeEach(inject(function(_api_, _GApi_, _gcal_, _$q_, _$rootScope_) {
-    spyOn(_api_, 'ping');
+  beforeEach(inject(function(_GApi_, _gcal_, _$q_, _$rootScope_) {
     GApi = _GApi_;
     $q = _$q_;
     gcal = _gcal_;

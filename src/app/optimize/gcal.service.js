@@ -7,6 +7,7 @@
 
   function gcal(GApi) {
     var service = {
+      calendarInfo: calendarInfo,
       events: events,
       rejectAllDayEvents: rejectAllDayEvents
     };
@@ -19,6 +20,12 @@
 
       return GApi.request(url).then(function(resp) {
         return resp.result.items;
+      });
+    }
+
+    function calendarInfo(calId) {
+      return GApi.request(calUrl(calId)).then(function(resp) {
+        return resp.result;
       });
     }
 

@@ -6,7 +6,7 @@
     .service('apiPing', apiPing);
 
   /** @ngInject */
-  function apiPing(api) {
+  function apiPing(api, optimizeApi) {
     var service = {
       ping: ping
     };
@@ -14,6 +14,7 @@
 
     function ping() {
       api.get('/');
+      optimizeApi.ping();
     }
   }
 })();

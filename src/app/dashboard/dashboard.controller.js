@@ -4,7 +4,7 @@
  * - exposes the model to the template and provides event handlers
  */
 angular.module('wizweekPy')
-	.controller('TodoController', function TodoController($filter, store, optimizer) {
+	.controller('TodoController', function TodoController($filter, store, optimizeAndSync) {
 		'use strict';
 
     var vm = this;
@@ -19,11 +19,10 @@ angular.module('wizweekPy')
     vm.optimizing = false;
     vm.optimizeMessage = '';
     vm.optimize = function() {
-      optimizer.optimizeAndSync(vm.todos, function(message) {
+      optimizeAndSync.exec(vm.todos, function(message) {
         vm.optimizeMessage = message;
       }, function() {
         vm.optimizing = false;
-        vm.optimizeMessage = 'Done! Go check out yout tasks calendar.';
       });
     };
 
