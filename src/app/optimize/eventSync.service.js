@@ -6,7 +6,7 @@
   .service('eventSync', eventSync);
 
   /** @ngInject */
-  function eventSync(gcal, $q) {
+  function eventSync(gcal) {
     var service = {
       syncEvents: syncEvents
     };
@@ -34,11 +34,7 @@
         requests.push(deleteRequest(oldEvents[k]));
       }
 
-      if (requests.length > 0) {
-        gcal.eventUpdatesBatch(tasksCalId, requests);
-      } else {
-        return $q.resolve();
-      }
+      return gcal.eventUpdatesBatch(tasksCalId, requests);
     }
 
     function updateRequest(oldEvent, newTask) {

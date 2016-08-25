@@ -15,25 +15,32 @@
     return service;
 
     function events(calId, timeMin, timeMax) {
-      var url = calUrl(calId) + "/events?timeMin=" + timeMin.toISOString() +
+      var path = calPath(calId) + "/events?timeMin=" + timeMin.toISOString() +
         "&timeMax=" + timeMax.toISOString();
-        url
 
-      return GApi.request(url).then(function(resp) {
+      return GApi.request(path).then(function(resp) {
         return resp.result.items;
       });
     }
 
     function eventUpdatesBatch(calId, eventUpdates) {
+      var requests = eventUpdates.map(function(update) {
+        var path = calPath(calId) + '/events';
+        if (update.id) {
+          path += '/' + update.id;
+        }
+        return { path: path, method: update.method, body: update.data };
+      });
+      return GApi.batch(requests);
     }
 
     function calendarInfo(calId) {
-      return GApi.request(calUrl(calId)).then(function(resp) {
+      return GApi.request(calPath(calId)).then(function(resp) {
         return resp.result;
       });
     }
 
-    function calUrl(calId) {
+    function calPath(calId) {
       return 'calendar/v3/calendars/' + calId;
     }
 

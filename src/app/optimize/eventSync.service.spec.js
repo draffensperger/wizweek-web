@@ -63,7 +63,7 @@ describe('eventSync', function() {
 
     eventSync.syncEvents(calId, currentEvents, optimizedEvents);
 
-    expect(gcal.eventUpdatesBatch).not.toHaveBeenCalled();
+    expectRequests([]);
   });
 
   it('deletes an extra event', function() {

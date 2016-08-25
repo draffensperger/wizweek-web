@@ -13,6 +13,22 @@
 
     this.get = get;
     this.request = request;
+    this.batch = batch;
+
+    function batch(requests) {
+      console.log(requests);
+      if (requests.length == 0) {
+        return $q.resolve();
+      }
+
+      return get().then(function(gapi) {
+        var batch = gapi.client.newBatch();
+        requests.forEach(function(req) {
+          batch.add(gapi.client.request(req));
+        })
+        return batch;
+      });
+    }
 
     function request(args) {
       return get().then(function(gapi) {
