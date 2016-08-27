@@ -33,6 +33,12 @@ you will meet your deadlines. For remaining flexibility in your work schedule, i
 
 WizWeek currently only allows time estimates for tasks to be one hour or more. The thinking is that you would use a separate list for all your shorter tasks. Then you could create a single larger task like "Small tasks" and add it to your list to schedule some time in your week.
 
+## Development
+
+To develop locally, run `gulp serve`. For tests that auto-run after changes run
+`gulp test:auto`. To inspect the production contents locally run `gulp
+serve:dist` (this is helpful in debugging issues related to minification, etc.).
+
 ## Deployment 
 
 The wizweek.com site runs via CloudFlare pointed at GitHub pages (with
