@@ -20,14 +20,9 @@ estimate, plus optimally a deadline and earliest start date.
 
 You also choose one of your Google calendars to be your "tasks" calendar and one 
 to be your "appointments" calendar.
-
-![](/screenshots/wizweek_site_screenshot.png | width=500)
-
 When you click "Optimize my schedule!" WizWeek will form your optimal schedule
 (or inform you that you are overcommitted!) It will then sync it to your tasks
 calendar.
-
-![](/screenshots/wizweek_gcal_calendar.png | width=500)
 
 WizWeek allows you to set up a weekly work schedule, e.g. 9am-5pm Monday to Friday.
 It will only schedule your tasks within those hours, and only when you don't have 
