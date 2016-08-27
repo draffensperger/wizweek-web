@@ -1,12 +1,11 @@
 # WizWeek AngularJS front end
 
-
-This contains the AngularJS code for the [wizweek.com](https://wizweek.com)
+This contains the AngularJS front code for the [wizweek.com](https://wizweek.com)
 website. It's a site that will generate an optimized personal schedule given a
 list of tasks and then sync that schedule to a Google calendar.
 
-For a discussion of product itself, check out my blog post "Optimize
-your schedule"[https://davidraff.com/optimize-your-schedule/].
+For a discussion of product itself, check out my blog post ["Optimize
+your schedule"](https://davidraff.com/optimize-your-schedule/).
 
 Wizweek.com also involves two other components:
 [wizweek-scheduler](github.com/draffensperger/wizweek-scheduler) is a Go web
@@ -14,23 +13,28 @@ service that uses a linear program to do the schedule optimization, and
 [wizweek-api](github.com/draffensperger/wizweek-api) is a Python Flask API that
 interfaces with Google Cloud Datastore to store settings and task data.
 
-### Product overview
+## Product overview
 
-You identify your larger tasks, give each a time estimate and a business value estimate, plus optimally a deadline and earliest start date.
+You identify your larger tasks, give each a time estimate and a business value 
+estimate, plus optimally a deadline and earliest start date.
 
-![](/content/images/2016/08/Screenshot-2016-08-27-13-17-31.png)
+![](/screenshots/wizweek_gcal_calendar.png)
 
-You also choose one of your Google calendars to be your "tasks" calendar and one to be your "appointments" calendar.
+You also choose one of your Google calendars to be your "tasks" calendar and one 
+to be your "appointments" calendar.
 
-When you click "Optimize my schedule!" WizWeek will form your optimal schedule (or inform you that you are overcommitted!) It will then sync it to your tasks calendar.
+When you click "Optimize my schedule!" WizWeek will form your optimal schedule
+(or inform you that you are overcommitted!) It will then sync it to your tasks
+calendar.
 
-![](/content/images/2016/08/Screenshot-2016-08-27-13-35-16.png)
+![](/screenshots/wizweek_site_screenshot.png)
 
-#### How it works
+WizWeek allows you to set up a weekly work schedule, e.g. 9am-5pm Monday to Friday.
+It will only schedule your tasks within those hours, and only when you don't have 
+a meeting on your appointments calendar.
 
-WizWeek allows you to set up a weekly work schedule, e.g. 9am-5pm Monday to Friday. It will only schedule your tasks within those hours, and only when you don't have a meeting on your appointments calendar.
-
-Within those remaining free work hours, it will first prioritize a schedule where you will meet your deadlines. For remaining flexibility in your work schedule, it will put the highest impact tasks first as measured by business value per hour. It will also make sure not to schedule a task until it's minimum start date if specified.
+Within those remaining free work hours, it will first prioritize a schedule where 
+you will meet your deadlines. For remaining flexibility in your work schedule, it will put the highest impact tasks first as measured by business value per hour. It will also make sure not to schedule a task until it's minimum start date if specified.
 
 WizWeek currently only allows time estimates for tasks to be one hour or more. The thinking is that you would use a separate list for all your shorter tasks. Then you could create a single larger task like "Small tasks" and add it to your list to schedule some time in your week.
 
