@@ -18,16 +18,16 @@ interfaces with Google Cloud Datastore to store settings and task data.
 You identify your larger tasks, give each a time estimate and a business value 
 estimate, plus optimally a deadline and earliest start date.
 
-![](/screenshots/wizweek_gcal_calendar.png)
-
 You also choose one of your Google calendars to be your "tasks" calendar and one 
 to be your "appointments" calendar.
+
+<img src="/screenshots/wizweek_site_screenshot.png" style="width: 500px;"/>
 
 When you click "Optimize my schedule!" WizWeek will form your optimal schedule
 (or inform you that you are overcommitted!) It will then sync it to your tasks
 calendar.
 
-![](/screenshots/wizweek_site_screenshot.png)
+<img src="/screenshots/wizweek_gcal_calendar.png" style="width: 500px;"/>
 
 WizWeek allows you to set up a weekly work schedule, e.g. 9am-5pm Monday to Friday.
 It will only schedule your tasks within those hours, and only when you don't have 
