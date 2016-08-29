@@ -58,6 +58,7 @@ appointments calendar default to their primary Google calendar and prompt them
 to create a tasks calendar (and allow that to work automatically).
 - Refactor and clean up the code that was adapted from the TodoMVC
 - Improve test coverage, write end-to-end tests
+- Fix timezone dependent bug in the current unit tests
 - Make the tasks editor more user friendly in various ways and make it easier to
 navigate with the keyboard
 - Remove the need to sign in with Google: allow login via email and password.
