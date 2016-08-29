@@ -1,5 +1,7 @@
 # WizWeek AngularJS front end
 
+[![Build Status](https://travis-ci.org/draffensperger/wizweek-web.svg?branch=master)](https://travis-ci.org/draffensperger/wizweek-web)
+
 This contains the AngularJS front code for the [wizweek.com](https://wizweek.com)
 website. It's a site that will generate an optimized personal schedule given a
 list of tasks and then sync that schedule to a Google calendar.
