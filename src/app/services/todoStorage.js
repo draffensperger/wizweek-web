@@ -72,7 +72,7 @@
             if (todo.minStart) { todo.minStart = new Date(todo.minStart) };
           });
 					angular.copy(todos, store.todos);
-				});
+				})
 			},
 
 			insert: function (todo) {

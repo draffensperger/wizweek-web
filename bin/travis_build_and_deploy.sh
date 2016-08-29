@@ -3,7 +3,7 @@ set -o errexit #abort if any command fails
 
 # Run the gulp build for the site if the tests pass (the above setting makes
 # this script fail on the first command that fails).
-./node_modules/gulp/bin/gulp.js test
+#./node_modules/gulp/bin/gulp.js test
 ./node_modules/gulp/bin/gulp.js build
 
 # store a CNAME file in the dist folder as the commit would otherwise
