@@ -66,7 +66,13 @@
 			},
 
 			get: function () {
-				return store.api.query().$promise;
+        return store.api.query(function (todos) {
+          todos.forEach(function(todo) {
+            if (todo.deadline) { todo.deadline = new Date(todo.deadline) };
+            if (todo.minStart) { todo.minStart = new Date(todo.minStart) };
+          });
+					angular.copy(todos, store.todos);
+				});
 			},
 
 			insert: function (todo) {
